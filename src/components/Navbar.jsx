@@ -29,7 +29,7 @@ export default function Navbar() {
               <div className="brand-avatar"></div>
               <div className="brand-text">
                 <span className="brand-name">KAZ NEXT</span>
-                <span className="brand-subtitle text-green">AVAILABLE FOR PROJECTS</span>
+                <span className="brand-subtitle text-green">● ACCEPTING NEW GROWTH PROJECTS</span>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@ export default function Navbar() {
           </div>
 
           <div className="navbar-right desktop-only">
-            <a href="#contact" className="btn-primary nav-cta">Start a Project</a>
+            <a href="#contact" className="btn-primary nav-cta">Request Availability</a>
           </div>
 
           <button 
@@ -64,7 +64,7 @@ export default function Navbar() {
           <a href="#services" onClick={toggleMenu}>Services</a>
           <a href="#work" onClick={toggleMenu}>Work</a>
           <a href="#contact" onClick={toggleMenu}>Contact</a>
-          <a href="#contact" className="btn-primary mobile-cta" onClick={toggleMenu}>Start a Project</a>
+          <a href="#contact" className="btn-primary mobile-cta" onClick={toggleMenu}>Request Availability</a>
         </div>
       </div>
     </>
