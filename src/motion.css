@@ -1,0 +1,433 @@
+/* Unified KAZ NEXT motion language: restrained distance, layered timing. */
+.page-shell {
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-fast: 180ms;
+  --motion-medium: 560ms;
+  --motion-slow: 760ms;
+  --motion-distance: 22px;
+  --hero-lift: 0px;
+}
+
+/* Opening sequence */
+.hero {
+  transform: translate3d(0, var(--hero-lift), 0);
+  transition: transform 120ms linear;
+}
+
+.kaz-navbar,
+.hero-intro,
+.hero h1 > span,
+.hero-subtitle,
+.hero-bio,
+.hero-actions {
+  transition-property: opacity, transform;
+  transition-timing-function: var(--motion-ease);
+}
+
+.kaz-navbar {
+  transition-duration: 640ms;
+  transition-property: opacity, transform, box-shadow, background-color;
+}
+
+.hero-intro {
+  transition-duration: 520ms;
+}
+
+.hero h1 > span {
+  transition-duration: 760ms;
+}
+
+.hero-subtitle,
+.hero-bio,
+.hero-actions {
+  transition-duration: 620ms;
+}
+
+.is-motion-pending .kaz-navbar {
+  opacity: 0;
+  transform: translate3d(0, -10px, 0);
+}
+
+.is-motion-pending .hero-intro,
+.is-motion-pending .hero h1 > span,
+.is-motion-pending .hero-subtitle,
+.is-motion-pending .hero-bio,
+.is-motion-pending .hero-actions {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+}
+
+.is-motion-ready .kaz-navbar {
+  transition-delay: 30ms;
+}
+
+.is-motion-ready .hero-intro {
+  transition-delay: 90ms;
+}
+
+.is-motion-ready .hero h1 > span:first-child {
+  transition-delay: 150ms;
+}
+
+.is-motion-ready .hero h1 > span:nth-child(2) {
+  transition-delay: 225ms;
+}
+
+.is-motion-ready .hero-subtitle {
+  transition-delay: 310ms;
+}
+
+.is-motion-ready .hero-bio {
+  transition-delay: 375ms;
+}
+
+.is-motion-ready .hero-actions {
+  transition-delay: 450ms;
+}
+
+/* Predictive section reveals */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, var(--motion-distance), 0);
+  transition:
+    opacity var(--motion-slow) ease,
+    transform var(--motion-slow) var(--motion-ease);
+}
+
+.reveal-on-scroll.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Project console: one entrance composed from small related movements. */
+.reveal-showcase .fun-title,
+.reveal-showcase .gameboy,
+.reveal-showcase .game-flank,
+.reveal-showcase .screen-enclosure,
+.reveal-showcase .console-controls,
+.reveal-showcase .console-bottom,
+.reveal-showcase .flank-rail-layer,
+.reveal-showcase .project-image-shell {
+  opacity: 0;
+  transition:
+    opacity var(--motion-medium) ease,
+    transform var(--motion-slow) var(--motion-ease),
+    clip-path var(--motion-slow) var(--motion-ease);
+}
+
+.reveal-showcase .fun-title {
+  transform: translate3d(0, 10px, 0);
+}
+
+.reveal-showcase .gameboy {
+  transform: translate3d(0, 24px, 0) scale(0.992);
+}
+
+.reveal-showcase .left-flank {
+  transform: translate3d(-16px, 8px, 0);
+}
+
+.reveal-showcase .right-flank {
+  transform: translate3d(16px, 8px, 0);
+}
+
+.reveal-showcase .screen-enclosure,
+.reveal-showcase .console-controls,
+.reveal-showcase .console-bottom {
+  transform: translate3d(0, 9px, 0);
+}
+
+.reveal-showcase .flank-rail-layer {
+  transform: scale(0.985);
+}
+
+.reveal-showcase .project-image-shell {
+  clip-path: inset(0 0 8% 0 round 31px 31px 0 0);
+  transform: scale(1.018);
+}
+
+.reveal-showcase.visible .fun-title,
+.reveal-showcase.visible .gameboy,
+.reveal-showcase.visible .game-flank,
+.reveal-showcase.visible .screen-enclosure,
+.reveal-showcase.visible .console-controls,
+.reveal-showcase.visible .console-bottom,
+.reveal-showcase.visible .flank-rail-layer,
+.reveal-showcase.visible .project-image-shell {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.reveal-showcase.visible .project-image-shell {
+  clip-path: inset(0 0 0 0 round 31px 31px 0 0);
+}
+
+.reveal-showcase.visible .fun-title {
+  transition-delay: 80ms;
+}
+
+.reveal-showcase.visible .flank-rail-layer {
+  transition-delay: 130ms;
+}
+
+.reveal-showcase.visible .gameboy {
+  transition-delay: 150ms;
+}
+
+.reveal-showcase.visible .game-flank {
+  transition-delay: 220ms;
+}
+
+.reveal-showcase.visible .screen-enclosure,
+.reveal-showcase.visible .project-image-shell {
+  transition-delay: 260ms;
+}
+
+.reveal-showcase.visible .console-controls {
+  transition-delay: 330ms;
+}
+
+.reveal-showcase.visible .console-bottom {
+  transition-delay: 390ms;
+}
+
+/* Panorama: title, clipped frame, then supporting line. */
+.reveal-panorama .panorama-section h2,
+.reveal-panorama .panorama-frame,
+.reveal-panorama .panorama-subtitle {
+  opacity: 0;
+  transition:
+    opacity var(--motion-medium) ease,
+    transform var(--motion-slow) var(--motion-ease),
+    clip-path var(--motion-slow) var(--motion-ease);
+}
+
+.reveal-panorama .panorama-section h2,
+.reveal-panorama .panorama-subtitle {
+  transform: translate3d(0, 14px, 0);
+}
+
+.reveal-panorama .panorama-frame {
+  clip-path: inset(0 0 7% 0 round 24px);
+  transform: translate3d(0, 18px, 0) scale(0.992);
+}
+
+.reveal-panorama.visible .panorama-section h2,
+.reveal-panorama.visible .panorama-frame,
+.reveal-panorama.visible .panorama-subtitle {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.reveal-panorama.visible .panorama-frame {
+  clip-path: inset(0 0 0 0 round 24px);
+  transition-delay: 100ms;
+}
+
+.reveal-panorama.visible .panorama-subtitle {
+  transition-delay: 190ms;
+}
+
+/* Footer background arrives first; content follows in a compact cadence. */
+.reveal-footer {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-footer .footer-top,
+.reveal-footer .footer-main > div:first-child,
+.reveal-footer .footer-links > div,
+.reveal-footer .footer-bottom {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition:
+    opacity var(--motion-medium) ease,
+    transform var(--motion-slow) var(--motion-ease);
+}
+
+.reveal-footer.visible .footer-top,
+.reveal-footer.visible .footer-main > div:first-child,
+.reveal-footer.visible .footer-links > div,
+.reveal-footer.visible .footer-bottom {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal-footer.visible .footer-top {
+  transition-delay: 60ms;
+}
+
+.reveal-footer.visible .footer-main > div:first-child {
+  transition-delay: 130ms;
+}
+
+.reveal-footer.visible .footer-links > div:first-child {
+  transition-delay: 210ms;
+}
+
+.reveal-footer.visible .footer-links > div:nth-child(2) {
+  transition-delay: 270ms;
+}
+
+.reveal-footer.visible .footer-bottom {
+  transition-delay: 340ms;
+}
+
+/* Discoverable micro-interactions, limited to precise pointing devices. */
+.kaz-navbar__links a {
+  position: relative;
+}
+
+.kaz-navbar__links a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+.kaz-navbar__mobile-links > a {
+  opacity: 0;
+  transform: translate3d(0, 8px, 0);
+  transition:
+    opacity 360ms ease,
+    transform 460ms var(--motion-ease);
+}
+
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(2) {
+  transition-delay: 35ms;
+}
+
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(3) {
+  transition-delay: 70ms;
+}
+
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(4) {
+  transition-delay: 105ms;
+}
+
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(5) {
+  transition-delay: 140ms;
+}
+
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(6) {
+  transition-delay: 175ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .kaz-navbar__links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .hero-primary:hover,
+  .hero-secondary:hover {
+    transform: translate3d(0, -2px, 0) scale(1.015);
+  }
+
+  .reveal-panorama .gallery-art:hover {
+    transform: scale(1.025);
+  }
+
+  .footer-links a,
+  .footer-links button {
+    transition:
+      color var(--motion-fast) ease,
+      transform var(--motion-fast) var(--motion-ease);
+  }
+
+  .footer-links a:hover,
+  .footer-links button:hover {
+    transform: translate3d(2px, 0, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-shell {
+    --motion-medium: 460ms;
+    --motion-slow: 620ms;
+    --motion-distance: 12px;
+  }
+
+  .is-motion-pending .hero-intro,
+  .is-motion-pending .hero h1 > span,
+  .is-motion-pending .hero-subtitle,
+  .is-motion-pending .hero-bio,
+  .is-motion-pending .hero-actions {
+    transform: translate3d(0, 12px, 0);
+  }
+
+  .reveal-showcase .gameboy {
+    transform: translate3d(0, 14px, 0) scale(0.996);
+  }
+
+  .reveal-showcase .screen-enclosure,
+  .reveal-showcase .console-controls,
+  .reveal-showcase .console-bottom,
+  .reveal-panorama .panorama-frame {
+    transform: translate3d(0, 8px, 0);
+  }
+
+  .reveal-showcase .project-image-shell,
+  .reveal-showcase.visible .project-image-shell {
+    clip-path: inset(0 0 0 0 round 28px 28px 0 0);
+  }
+
+  .reveal-showcase.visible .game-flank {
+    transition-delay: 0ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .page-shell *,
+  .page-shell *::before,
+  .page-shell *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero,
+  .is-motion-pending .kaz-navbar,
+  .is-motion-pending .hero-intro,
+  .is-motion-pending .hero h1 > span,
+  .is-motion-pending .hero-subtitle,
+  .is-motion-pending .hero-bio,
+  .is-motion-pending .hero-actions,
+  .reveal-on-scroll,
+  .reveal-showcase .fun-title,
+  .reveal-showcase .gameboy,
+  .reveal-showcase .game-flank,
+  .reveal-showcase .screen-enclosure,
+  .reveal-showcase .console-controls,
+  .reveal-showcase .console-bottom,
+  .reveal-showcase .flank-rail-layer,
+  .reveal-showcase .project-image-shell,
+  .reveal-panorama .panorama-section h2,
+  .reveal-panorama .panorama-frame,
+  .reveal-panorama .panorama-subtitle,
+  .reveal-footer .footer-top,
+  .reveal-footer .footer-main > div:first-child,
+  .reveal-footer .footer-links > div,
+  .reveal-footer .footer-bottom {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+}
