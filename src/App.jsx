@@ -394,9 +394,10 @@ export default function App() {
                   <div
                     className={`dpad-control ${pressed === "ArrowLeft" ? "press-left" : ""} ${pressed === "ArrowRight" ? "press-right" : ""} ${pressed === "ArrowUp" ? "press-up" : ""} ${pressed === "ArrowDown" ? "press-down" : ""}`}
                   >
-                    <i />
-                    <i />
-                    <span className="dpad-center" />
+                    <span className="dpad-cross" aria-hidden="true">
+                      <i />
+                      <i />
+                    </span>
                     <button
                       className={`dpad-hit left ${pressed === "ArrowLeft" ? "is-pressed" : ""}`}
                       onClick={() => {
@@ -451,11 +452,27 @@ export default function App() {
                 </div>
                 <div className="console-bottom">
                   <span>C-CASE STUDY • V-VIEW LIVE</span>
-                  <button
-                    className={`${muted ? "is-muted" : ""} ${pressed === "KeyM" ? "is-pressed" : ""}`}
-                    onClick={() => setMuted((x) => !x)}
-                    aria-label="Toggle sound"
-                  />
+                  <div className="sound-control">
+                    <svg
+                      className="sound-icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                    </svg>
+                    <button
+                      className={`${muted ? "is-muted" : ""} ${pressed === "KeyM" ? "is-pressed" : ""}`}
+                      onClick={() => setMuted((x) => !x)}
+                      aria-label="Toggle sound"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
