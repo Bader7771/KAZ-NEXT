@@ -3,7 +3,7 @@ import "./ProblemNextStep.css";
 const diagnosticEntries = [
   {
     number: "01",
-    problemTitle: "People find you, but don't become customers.",
+    problemTitle: "People find you, but don't become customers!",
     problem:
       "Your business may be getting visitors, views, or attention—but attention doesn't always become action. If customers don't clearly understand what you offer, why they should trust you, or what to do next, they leave.",
     solutionTitle: "Turn attention into a clear next move.",
