@@ -2,6 +2,93 @@
   position: relative;
 }
 
+.spotlight-section{
+  --spotlight-size: 92px;
+  --spotlight-radius: calc(var(--spotlight-size) / 2);
+  --spotlight-x: 50%;
+  --spotlight-y: 50%;
+  --spotlight-transform: translate3d(-200px, -200px, 0);
+  overflow: hidden;
+  background: #dbeafe;
+  color: #1e2a5e;
+}
+
+.spotlight-section :where(h1, h2, h3, h4, p, li, span, strong, em, a, div){
+  color: #1e2a5e;
+}
+
+.spotlight-section.is-spotlight-active,
+.spotlight-section.is-spotlight-active *{
+  cursor: none;
+}
+
+.spotlight-section__base{
+  position: relative;
+  z-index: 1;
+}
+
+.spotlight-section__reveal{
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  background: #3b261c;
+  clip-path: circle(
+    calc(var(--spotlight-size) / 2) at var(--spotlight-x) var(--spotlight-y)
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms ease;
+}
+
+.spotlight-section.is-spotlight-active .spotlight-section__reveal{
+  opacity: 1;
+}
+
+.spotlight-section__reveal,
+.spotlight-section__reveal :where(h1, h2, h3, h4, p, li, span, strong, em, a, div){
+  color: #fdf5e6 !important;
+}
+
+.spotlight-section__reveal :where(section, div, ul, li, article, aside){
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.spotlight-section__reveal :where(.kz-reveal){
+  opacity: 1;
+  transform: none;
+}
+
+.spotlight-section__reveal :where(svg, img, picture){
+  opacity: 0.22;
+}
+
+.spotlight-section__reveal :where(
+  .kz-divider,
+  .ps-problem-list li,
+  .ps-note,
+  .hwh-item,
+  .hww-step,
+  .hww-close
+){
+  border-color: rgba(253, 245, 230, 0.28) !important;
+}
+
+.spotlight-section__reveal .ps-solution-list::before,
+.spotlight-section__reveal .hwh-line,
+.spotlight-section__reveal .hww-steps::before,
+.spotlight-section__reveal .kz-thread{
+  background: rgba(253, 245, 230, 0.28) !important;
+}
+
+.spotlight-section__reveal .ps-solution-list li::before,
+.spotlight-section__reveal .hww-step-num{
+  background: #fdf5e6 !important;
+  color: #3b261c !important;
+}
+
 .kz-thread{
   position:absolute;
   left: 50%;
@@ -22,4 +109,20 @@
 
 @media (max-width: 900px){
   .kz-thread{ display: none; }
+}
+
+@media (pointer: coarse){
+  .spotlight-section{
+    cursor: auto;
+  }
+
+  .spotlight-section__reveal{
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .spotlight-section__reveal{
+    transition: none;
+  }
 }
