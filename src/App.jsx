@@ -13,6 +13,10 @@ import "./App.css";
 import "./FlankRail.css";
 import "./Gameboy.css";
 import "./motion.css";
+import StoryThread from "./components/StoryThread";
+import ProblemSolution from "./components/ProblemSolution";
+import HowWeHelp from "./components/HowWeHelp";
+import HowWeWork from "./components/HowWeWork";
 
 const Panoramic3DSection = lazy(
   () => import("./components/Panoramic3DSection"),
@@ -292,6 +296,13 @@ export default function App() {
           </div>
         </section>
         <WhoWeAre />
+        <StoryThread>
+          <ProblemSolution />
+          <hr className="kz-divider" />
+          <HowWeHelp />
+          <hr className="kz-divider" />
+          <HowWeWork />
+        </StoryThread>
         <section
           ref={showcaseRef}
           id="work"

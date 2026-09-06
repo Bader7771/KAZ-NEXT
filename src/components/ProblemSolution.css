@@ -1,0 +1,110 @@
+.ps-section{
+  position: relative;
+  z-index: 1;
+  padding: 120px 0 100px;
+}
+@media (max-width: 700px){
+  .ps-section{ padding: 80px 0 64px; }
+}
+
+.ps-head{ max-width: 640px; margin-bottom: 84px; }
+.ps-headline{ font-size: clamp(42px, 4.1vw, 61px); }
+.ps-lede{
+  font-family: var(--kz-font-body);
+  font-size: 16px;
+  color: #626262;
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0;
+}
+
+.ps-grid{
+  display:grid;
+  grid-template-columns: 1fr 44px 1fr;
+  align-items: start;
+  gap: 0 8px;
+}
+@media (max-width: 860px){
+  .ps-grid{ grid-template-columns: 1fr; gap: 48px; }
+  .ps-bridge{ display:none; }
+}
+
+.ps-col-label{
+  font-family: var(--kz-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #898989;
+  font-weight: 400;
+  margin-bottom: 22px;
+}
+
+/* problem side: loose, uneven, slightly off-grid */
+.ps-problem-list{ list-style:none; margin:0; padding:0; font-family: var(--kz-font-body); }
+.ps-problem-list li{
+  font-size: 15px;
+  color: #626262;
+  line-height: 1.55;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--kz-hairline);
+  max-width: 92%;
+}
+.ps-problem-list li:nth-child(3n){ margin-left: 18px; max-width: 80%; }
+.ps-problem-list li:nth-child(4){ margin-left: 8px; }
+
+.ps-bridge{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top: 40px;
+}
+.ps-bridge svg{ width: 24px; height: 140px; }
+
+/* solution side: ordered, connected, confident */
+.ps-solution-list{ list-style:none; margin:0; padding:0; position:relative; font-family: var(--kz-font-body); }
+.ps-solution-list::before{
+  content:"";
+  position:absolute;
+  left: 11px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--kz-hairline);
+}
+.ps-solution-list li{
+  position:relative;
+  padding: 14px 0 14px 40px;
+  font-size: 15px;
+  color: var(--kz-ink);
+  font-weight: 600;
+  line-height: 1.55;
+}
+.ps-solution-list li::before{
+  content: attr(data-i);
+  position:absolute;
+  left: 0;
+  top: 14px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--kz-blue);
+  color: #fff;
+  font-family: var(--kz-font-mono);
+  font-size: 8px;
+  font-weight: 500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ps-note{
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--kz-hairline);
+  font-family: var(--kz-font-body);
+  font-size: 14px;
+  color: #666;
+  line-height: 1.65;
+  max-width: 620px;
+}
+.ps-note strong{ color: #242424; font-weight: 600; }

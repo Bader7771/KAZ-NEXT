@@ -1,0 +1,101 @@
+/*
+  Shared tokens for the Problem&Solution / How We Help You Grow / How We Work
+  story sections. Import this once (e.g. in your app's root or in Story.jsx).
+
+  If your project already defines these variables globally, delete the
+  :root block below and just keep the .eyebrow / .divider / .pill-btn /
+  .reveal utility classes.
+*/
+
+:root{
+  --kz-bg: #FFFFFF;
+  --kz-ink: #111111;
+  --kz-ink-soft: #4A4A4A;
+  --kz-muted: #8A8A8A;
+  --kz-hairline: var(--line, #E7E5E0);
+  --kz-blue: var(--blue, #345FF6);
+  --kz-blue-deep: #1E3FC4;
+  --kz-lime: #C6F135;
+  --kz-card: #FAFAF8;
+  --kz-radius-pill: 999px;
+  --kz-maxw: 1180px;
+
+  --kz-font-display: var(--serif, "Playfair Display", serif);
+  --kz-font-body: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --kz-font-mono: var(--mono, "DM Mono", monospace);
+}
+
+.kz-wrap{
+  max-width: var(--kz-maxw);
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+}
+@media (max-width: 700px){
+  .kz-wrap{ padding: 0 24px; }
+}
+
+.kz-eyebrow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family: var(--kz-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #777;
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+.kz-eyebrow .kz-num{ color: var(--kz-blue); font-weight: 500; }
+.kz-eyebrow .kz-dash{ color: var(--kz-hairline); }
+
+.kz-headline{
+  font-family: var(--kz-font-display);
+  font-style: normal;
+  font-weight: 500;
+  color: var(--kz-ink);
+  line-height: 0.98;
+  letter-spacing: 0;
+  margin: 0 0 20px 0;
+}
+
+.kz-divider{
+  border: none;
+  border-top: 1px solid var(--kz-hairline);
+  margin: 0;
+}
+
+.kz-pill-btn{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  background: var(--kz-ink);
+  color: #fff;
+  border: none;
+  border-radius: var(--kz-radius-pill);
+  padding: 14px 24px;
+  font-family: var(--kz-font-mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.kz-pill-btn:hover{ background: var(--kz-blue-deep); }
+.kz-pill-btn:focus-visible{ outline: 2px solid var(--kz-blue); outline-offset: 3px; }
+
+/* one quiet reveal-on-scroll moment per section, not per element */
+.kz-reveal{
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.kz-reveal.is-visible{ opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce){
+  .kz-reveal{ opacity:1; transform:none; transition:none; }
+}

@@ -1,0 +1,91 @@
+.hwh-section{
+  position: relative;
+  z-index: 1;
+  padding: 120px 0 100px;
+}
+@media (max-width: 700px){
+  .hwh-section{ padding: 80px 0 64px; }
+}
+
+.hwh-head{ max-width: 680px; margin-bottom: 72px; }
+.hwh-headline{ font-size: clamp(42px, 4.1vw, 61px); }
+.hwh-lede{
+  font-family: var(--kz-font-body);
+  font-size: 16px;
+  color: #626262;
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0;
+}
+
+.hwh-path{ position: relative; padding-top: 8px; }
+.hwh-line{
+  position:absolute;
+  left: 0; right: 0; top: 27px;
+  height: 1px;
+  background: var(--kz-hairline);
+}
+@media (max-width: 860px){ .hwh-line{ display:none; } }
+
+.hwh-row{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 28px;
+  position: relative;
+}
+@media (max-width: 860px){
+  .hwh-row{ grid-template-columns: 1fr; gap: 0; }
+}
+
+.hwh-item{ position: relative; font-family: var(--kz-font-body); }
+@media (max-width: 860px){
+  .hwh-item{ padding: 26px 0; border-bottom: 1px solid var(--kz-hairline); }
+  .hwh-item:first-child{ border-top: 1px solid var(--kz-hairline); }
+}
+
+.hwh-index{
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--kz-hairline);
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--kz-font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--kz-blue);
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 860px){ .hwh-index{ margin-bottom: 14px; } }
+
+.hwh-item h3{
+  font-family: var(--kz-font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 8px 0;
+  color: var(--kz-ink);
+}
+.hwh-item p{
+  font-size: 13px;
+  color: #666;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.hwh-close{
+  margin-top: 64px;
+  display:flex;
+  align-items:baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.hwh-big{
+  font-family: var(--kz-font-display);
+  font-style: italic;
+  font-size: clamp(27px, 3vw, 38px);
+  font-weight: 500;
+  color: var(--kz-ink);
+}
+.hwh-big em{ color: var(--kz-blue); font-style: italic; }
