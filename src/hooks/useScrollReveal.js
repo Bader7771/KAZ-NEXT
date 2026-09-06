@@ -19,14 +19,22 @@ export default function useScrollReveal() {
 
     const observerOptions = {
       root: null,
-      rootMargin: "0px 0px -12% 0px",
-      threshold: 0.05,
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.03,
     };
+
+    const settleTimers = new Set();
 
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
+          entry.target.classList.add("motion-entering");
+          const settleTimer = window.setTimeout(() => {
+            entry.target.classList.remove("motion-entering");
+            settleTimers.delete(settleTimer);
+          }, 1400);
+          settleTimers.add(settleTimer);
           observer.unobserve(entry.target);
         }
       });
@@ -39,8 +47,15 @@ export default function useScrollReveal() {
     const updateDepth = () => {
       const range = Math.max(window.innerHeight * 0.9, 1);
       const progress = Math.min(Math.max(window.scrollY / range, 0), 1);
-      const distance = window.innerWidth <= 768 ? 6 : 14;
-      page?.style.setProperty("--hero-lift", `${progress * -distance}px`);
+      const distance = window.innerWidth <= 768 ? 4 : 10;
+      page?.style.setProperty(
+        "--hero-depth-near",
+        `${progress * distance * -0.4}px`,
+      );
+      page?.style.setProperty(
+        "--hero-depth-far",
+        `${progress * -distance}px`,
+      );
       scrollFrame = 0;
     };
     const handleScroll = () => {
@@ -52,6 +67,7 @@ export default function useScrollReveal() {
 
     return () => {
       observer.disconnect();
+      settleTimers.forEach((timer) => window.clearTimeout(timer));
       window.cancelAnimationFrame(readyFrame);
       window.cancelAnimationFrame(scrollFrame);
       window.removeEventListener("scroll", handleScroll);

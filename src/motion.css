@@ -1,283 +1,330 @@
-/* Unified KAZ NEXT motion language: restrained distance, layered timing. */
+/* KAZ NEXT motion system: hierarchy first, movement second. */
 .page-shell {
   --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --motion-ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --motion-fast: 180ms;
-  --motion-medium: 560ms;
-  --motion-slow: 760ms;
-  --motion-distance: 22px;
-  --hero-lift: 0px;
+  --motion-rise: 16px;
+  --hero-depth-near: 0px;
+  --hero-depth-far: 0px;
 }
 
-/* Opening sequence */
-.hero {
-  transform: translate3d(0, var(--hero-lift), 0);
-  transition: transform 120ms linear;
+@keyframes motion-rise {
+  from { opacity: 0; transform: translate3d(0, var(--motion-rise), 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-.kaz-navbar,
-.hero-intro,
-.hero h1 > span,
-.hero-subtitle,
-.hero-bio,
-.hero-actions {
-  transition-property: opacity, transform;
-  transition-timing-function: var(--motion-ease);
+@keyframes motion-rise-small {
+  from { opacity: 0; transform: translate3d(0, 8px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-.kaz-navbar {
-  transition-duration: 640ms;
-  transition-property: opacity, transform, box-shadow, background-color;
+@keyframes motion-avatar {
+  from { opacity: 0; transform: translate3d(0, 6px, 0) scale(0.96); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
 }
 
-.hero-intro {
-  transition-duration: 520ms;
+@keyframes motion-arrow {
+  from { opacity: 0; transform: translate3d(-4px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-.hero h1 > span {
-  transition-duration: 760ms;
+@keyframes motion-line-reveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 -5% 100% -5%);
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(-8% -5% -14% -5%);
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-.hero-subtitle,
-.hero-bio,
-.hero-actions {
-  transition-duration: 620ms;
+@keyframes motion-visual-reveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 8% 0 round 31px 31px 0 0);
+    transform: translate3d(0, 12px, 0) scale(1.012);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round 31px 31px 0 0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 }
 
-.is-motion-pending .kaz-navbar {
+@keyframes motion-from-left {
+  from { opacity: 0; transform: translate3d(-12px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes motion-from-right {
+  from { opacity: 0; transform: translate3d(12px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes motion-control-settle {
+  from { opacity: 0; transform: translate3d(0, 7px, 0) scale(0.985); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes motion-panorama-frame {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 7% 0 round 24px);
+    transform: translate3d(0, 14px, 0) scale(0.994);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round 24px);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes motion-gallery-card {
+  from { opacity: 0; translate: 0 10px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+/* The navigation surface stays still; its contents assemble individually. */
+.is-motion-pending .kaz-navbar__avatar,
+.is-motion-pending .kaz-navbar__name,
+.is-motion-pending .kaz-navbar__badge,
+.is-motion-pending .kaz-navbar__subtitle,
+.is-motion-pending .kaz-navbar__links > a,
+.is-motion-pending .kaz-navbar__secondary,
+.is-motion-pending .kaz-navbar__primary,
+.is-motion-pending .kaz-navbar__menu-button {
   opacity: 0;
-  transform: translate3d(0, -10px, 0);
+  transform: translate3d(0, 8px, 0);
 }
+
+.is-motion-pending .kaz-navbar__avatar {
+  transform: translate3d(0, 6px, 0) scale(0.96);
+}
+
+.is-motion-ready .kaz-navbar__avatar { animation: motion-avatar 500ms var(--motion-ease) 50ms backwards; }
+.is-motion-ready .kaz-navbar__name { animation: motion-rise-small 460ms var(--motion-ease) 100ms backwards; }
+.is-motion-ready .kaz-navbar__badge { animation: motion-rise-small 440ms var(--motion-ease) 145ms backwards; }
+.is-motion-ready .kaz-navbar__subtitle { animation: motion-rise-small 460ms var(--motion-ease) 185ms backwards; }
+.is-motion-ready .kaz-navbar__links > a { animation: motion-rise-small 480ms var(--motion-ease) backwards; }
+.is-motion-ready .kaz-navbar__links > a:nth-child(1) { animation-delay: 180ms; }
+.is-motion-ready .kaz-navbar__links > a:nth-child(2) { animation-delay: 222ms; }
+.is-motion-ready .kaz-navbar__links > a:nth-child(3) { animation-delay: 264ms; }
+.is-motion-ready .kaz-navbar__links > a:nth-child(4) { animation-delay: 306ms; }
+.is-motion-ready .kaz-navbar__links > a:nth-child(5) { animation-delay: 348ms; }
+.is-motion-ready .kaz-navbar__secondary { animation: motion-rise-small 500ms var(--motion-ease) 390ms backwards; }
+.is-motion-ready .kaz-navbar__primary { animation: motion-rise-small 540ms var(--motion-ease) 440ms backwards; }
+.is-motion-ready .kaz-navbar__primary .kaz-navbar__arrow { animation: motion-arrow 420ms var(--motion-ease) 515ms backwards; }
+.is-motion-ready .kaz-navbar__menu-button { animation: motion-rise-small 480ms var(--motion-ease) 230ms backwards; }
+
+/* Hero: the container holds layout; message layers establish the hierarchy. */
+.hero-intro,
+.hero h1 > span:first-child,
+.hero-subtitle,
+.hero-bio,
+.hero-actions > a { translate: 0 var(--hero-depth-near); }
+
+.hero h1 > span:nth-child(2) { translate: 0 var(--hero-depth-far); }
 
 .is-motion-pending .hero-intro,
-.is-motion-pending .hero h1 > span,
 .is-motion-pending .hero-subtitle,
 .is-motion-pending .hero-bio,
-.is-motion-pending .hero-actions {
+.is-motion-pending .hero-actions > a {
   opacity: 0;
+  transform: translate3d(0, var(--motion-rise), 0);
+}
+
+.is-motion-pending .hero h1 > span {
+  opacity: 0;
+  clip-path: inset(0 -5% 100% -5%);
+  transform: translate3d(0, 20px, 0);
+}
+
+.is-motion-ready .hero-intro { animation: motion-rise 560ms var(--motion-ease) 300ms backwards; }
+.is-motion-ready .hero h1 > span:first-child { animation: motion-line-reveal 760ms var(--motion-ease) 390ms backwards; }
+.is-motion-ready .hero h1 > span:nth-child(2) { animation: motion-line-reveal 800ms var(--motion-ease) 500ms backwards; }
+.is-motion-ready .hero-subtitle { animation: motion-rise 580ms var(--motion-ease) 610ms backwards; }
+.is-motion-ready .hero-bio { animation: motion-rise 620ms var(--motion-ease) 680ms backwards; }
+.is-motion-ready .hero-actions > a:first-child { animation: motion-rise 560ms var(--motion-ease) 770ms backwards; }
+.is-motion-ready .hero-actions > a:nth-child(2) { animation: motion-rise 560ms var(--motion-ease) 830ms backwards; }
+
+/* Section wrappers never animate as a single object. */
+.reveal-on-scroll { opacity: 1; transform: none; }
+
+/* Selected work: visual, data, copy, controls, then hardware details. */
+.reveal-showcase:not(.visible) .fun-title,
+.reveal-showcase:not(.visible) .flank-rail-layer .rail-card,
+.reveal-showcase:not(.visible) .game-flank .instructions > p,
+.reveal-showcase:not(.visible) .game-flank .instruction-card,
+.reveal-showcase:not(.visible) .device-meta b,
+.reveal-showcase:not(.visible) .device-meta span,
+.reveal-showcase:not(.visible) .terminal strong,
+.reveal-showcase:not(.visible) .terminal > div > span,
+.reveal-showcase:not(.visible) .terminal p,
+.reveal-showcase:not(.visible) .dpad-control,
+.reveal-showcase:not(.visible) .action-controls,
+.reveal-showcase:not(.visible) .dpad-cross,
+.reveal-showcase:not(.visible) .action-key,
+.reveal-showcase:not(.visible) .console-bottom > span,
+.reveal-showcase:not(.visible) .sound-control { opacity: 0; }
+
+.reveal-showcase:not(.visible) .fun-title,
+.reveal-showcase:not(.visible) .device-meta b,
+.reveal-showcase:not(.visible) .device-meta span,
+.reveal-showcase:not(.visible) .terminal strong,
+.reveal-showcase:not(.visible) .terminal > div > span,
+.reveal-showcase:not(.visible) .terminal p,
+.reveal-showcase:not(.visible) .console-bottom > span,
+.reveal-showcase:not(.visible) .sound-control { transform: translate3d(0, 9px, 0); }
+
+.reveal-showcase:not(.visible) .project-image-shell {
+  opacity: 0;
+  clip-path: inset(0 0 8% 0 round 31px 31px 0 0);
+  transform: translate3d(0, 12px, 0) scale(1.012);
+}
+
+.reveal-showcase:not(.visible) .left-flank .instruction-card,
+.reveal-showcase:not(.visible) .left-rail .rail-card { transform: translate3d(-12px, 0, 0); }
+
+.reveal-showcase:not(.visible) .right-flank .instruction-card,
+.reveal-showcase:not(.visible) .right-rail .rail-card { transform: translate3d(12px, 0, 0); }
+
+.reveal-showcase:not(.visible) .dpad-control,
+.reveal-showcase:not(.visible) .action-controls,
+.reveal-showcase:not(.visible) .dpad-cross,
+.reveal-showcase:not(.visible) .action-key { transform: translate3d(0, 7px, 0) scale(0.985); }
+
+.reveal-showcase.motion-entering .fun-title,
+.reveal-showcase.motion-entering .device-meta b,
+.reveal-showcase.motion-entering .device-meta span,
+.reveal-showcase.motion-entering .terminal strong,
+.reveal-showcase.motion-entering .terminal > div > span,
+.reveal-showcase.motion-entering .terminal p,
+.reveal-showcase.motion-entering .game-flank .instructions > p,
+.reveal-showcase.motion-entering .console-bottom > span,
+.reveal-showcase.motion-entering .sound-control {
+  animation: motion-rise-small 520ms var(--motion-ease) backwards;
+}
+
+.reveal-showcase.motion-entering .fun-title { animation-delay: 70ms; }
+.reveal-showcase.motion-entering .project-image-shell { animation: motion-visual-reveal 760ms var(--motion-ease) 145ms backwards; }
+.reveal-showcase.motion-entering .flank-rail-layer .rail-card { animation: motion-rise-small 520ms var(--motion-ease) backwards; }
+.reveal-showcase.motion-entering .left-rail .rail-card:nth-child(1) { animation-delay: 115ms; }
+.reveal-showcase.motion-entering .left-rail .rail-card:nth-child(2) { animation-delay: 155ms; }
+.reveal-showcase.motion-entering .right-rail .rail-card:nth-child(1) { animation-delay: 135ms; }
+.reveal-showcase.motion-entering .right-rail .rail-card:nth-child(2) { animation-delay: 175ms; }
+.reveal-showcase.motion-entering .game-flank .instructions > p { animation-delay: 245ms; }
+
+.reveal-showcase.motion-entering .game-flank .instruction-card {
+  animation-duration: 560ms;
+  animation-timing-function: var(--motion-ease);
+  animation-fill-mode: backwards;
+  animation-delay: 300ms;
+}
+
+.reveal-showcase.motion-entering .left-flank .instruction-card { animation-name: motion-from-left; }
+.reveal-showcase.motion-entering .right-flank .instruction-card { animation-name: motion-from-right; }
+.reveal-showcase.motion-entering .device-meta b { animation-delay: 255ms; }
+.reveal-showcase.motion-entering .device-meta span { animation-delay: 300ms; }
+.reveal-showcase.motion-entering .terminal strong { animation-delay: 345ms; }
+.reveal-showcase.motion-entering .terminal > div > span { animation-delay: 380ms; }
+.reveal-showcase.motion-entering .terminal p { animation-delay: 425ms; }
+
+.reveal-showcase.motion-entering .dpad-control,
+.reveal-showcase.motion-entering .action-controls,
+.reveal-showcase.motion-entering .dpad-cross,
+.reveal-showcase.motion-entering .action-key {
+  animation: motion-control-settle 540ms var(--motion-ease) backwards;
+}
+
+.reveal-showcase.motion-entering .dpad-control { animation-delay: 490ms; }
+.reveal-showcase.motion-entering .action-controls { animation-delay: 525ms; }
+.reveal-showcase.motion-entering .dpad-cross { animation-delay: 570ms; }
+.reveal-showcase.motion-entering .action-key:first-child { animation-delay: 590ms; }
+.reveal-showcase.motion-entering .action-key:nth-child(2) { animation-delay: 635ms; }
+.reveal-showcase.motion-entering .console-bottom > span { animation-delay: 690ms; }
+.reveal-showcase.motion-entering .sound-control { animation-delay: 735ms; }
+
+/* Panorama: editorial title, spatial frame, guidance, selected objects. */
+.reveal-panorama:not(.visible) .panorama-section h2,
+.reveal-panorama:not(.visible) .panorama-frame,
+.reveal-panorama:not(.visible) .hint,
+.reveal-panorama:not(.visible) .gallery-art,
+.reveal-panorama:not(.visible) .panorama-subtitle { opacity: 0; }
+
+.reveal-panorama:not(.visible) .panorama-section h2,
+.reveal-panorama:not(.visible) .panorama-subtitle { transform: translate3d(0, 12px, 0); }
+
+.reveal-panorama:not(.visible) .panorama-frame {
+  clip-path: inset(0 0 7% 0 round 24px);
+  transform: translate3d(0, 14px, 0) scale(0.994);
+}
+
+.reveal-panorama:not(.visible) .hint,
+.reveal-panorama:not(.visible) .gallery-art { translate: 0 10px; }
+
+.reveal-panorama.motion-entering .panorama-section h2,
+.reveal-panorama.motion-entering .panorama-subtitle,
+.reveal-panorama.motion-entering .hint { animation: motion-rise 560ms var(--motion-ease) backwards; }
+
+.reveal-panorama.motion-entering .panorama-section h2 { animation-delay: 70ms; }
+.reveal-panorama.motion-entering .panorama-frame { animation: motion-panorama-frame 780ms var(--motion-ease) 140ms backwards; }
+.reveal-panorama.motion-entering .hint.top-left { animation-delay: 285ms; }
+.reveal-panorama.motion-entering .hint.top-right { animation-delay: 320ms; }
+.reveal-panorama.motion-entering .hint.bottom-left { animation-delay: 355ms; }
+.reveal-panorama.motion-entering .hint.bottom-right { animation-delay: 390ms; }
+.reveal-panorama.motion-entering .gallery-art {
+  animation: motion-gallery-card 620ms var(--motion-ease)
+    var(--gallery-delay, 245ms) backwards;
+}
+.reveal-panorama.motion-entering .panorama-subtitle { animation-delay: 520ms; }
+
+/* Footer: its dark field is still while information resolves by priority. */
+.footer-main h2 > span { display: block; }
+
+.reveal-footer:not(.visible) .footer-top > *,
+.reveal-footer:not(.visible) .footer-main > div:first-child > p,
+.reveal-footer:not(.visible) .footer-main h2 > span,
+.reveal-footer:not(.visible) .footer-links > div > *,
+.reveal-footer:not(.visible) .footer-bottom > span {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+}
+
+.reveal-footer:not(.visible) .footer-main h2 > span {
+  clip-path: inset(0 -5% 100% -5%);
   transform: translate3d(0, 18px, 0);
 }
 
-.is-motion-ready .kaz-navbar {
-  transition-delay: 30ms;
+.reveal-footer.motion-entering .footer-top > *,
+.reveal-footer.motion-entering .footer-main > div:first-child > p,
+.reveal-footer.motion-entering .footer-links > div > *,
+.reveal-footer.motion-entering .footer-bottom > span {
+  animation: motion-rise 560ms var(--motion-ease) backwards;
 }
 
-.is-motion-ready .hero-intro {
-  transition-delay: 90ms;
-}
+.reveal-footer.motion-entering .footer-top > :first-child { animation-delay: 55ms; }
+.reveal-footer.motion-entering .footer-top > :nth-child(2) { animation-delay: 105ms; }
+.reveal-footer.motion-entering .footer-main > div:first-child > p { animation-delay: 145ms; }
+.reveal-footer.motion-entering .footer-main h2 > span { animation: motion-line-reveal 720ms var(--motion-ease) backwards; }
+.reveal-footer.motion-entering .footer-main h2 > span:first-child { animation-delay: 205ms; }
+.reveal-footer.motion-entering .footer-main h2 > span:nth-child(2) { animation-delay: 285ms; }
+.reveal-footer.motion-entering .footer-links > div > :nth-child(1) { animation-delay: 320ms; }
+.reveal-footer.motion-entering .footer-links > div > :nth-child(2) { animation-delay: 365ms; }
+.reveal-footer.motion-entering .footer-links > div > :nth-child(3) { animation-delay: 405ms; }
+.reveal-footer.motion-entering .footer-links > div > :nth-child(4) { animation-delay: 445ms; }
+.reveal-footer.motion-entering .footer-links > div > :nth-child(5) { animation-delay: 485ms; }
+.reveal-footer.motion-entering .footer-links > div:nth-child(2) > :nth-child(1) { animation-delay: 380ms; }
+.reveal-footer.motion-entering .footer-links > div:nth-child(2) > :nth-child(2) { animation-delay: 425ms; }
+.reveal-footer.motion-entering .footer-links > div:nth-child(2) > :nth-child(3) { animation-delay: 465ms; }
+.reveal-footer.motion-entering .footer-links > div:nth-child(2) > :nth-child(4) { animation-delay: 505ms; }
+.reveal-footer.motion-entering .footer-links > div:nth-child(2) > :nth-child(5) { animation-delay: 545ms; }
+.reveal-footer.motion-entering .footer-bottom > span:nth-child(1) { animation-delay: 605ms; }
+.reveal-footer.motion-entering .footer-bottom > span:nth-child(2) { animation-delay: 650ms; }
+.reveal-footer.motion-entering .footer-bottom > span:nth-child(3) { animation-delay: 695ms; }
 
-.is-motion-ready .hero h1 > span:first-child {
-  transition-delay: 150ms;
-}
-
-.is-motion-ready .hero h1 > span:nth-child(2) {
-  transition-delay: 225ms;
-}
-
-.is-motion-ready .hero-subtitle {
-  transition-delay: 310ms;
-}
-
-.is-motion-ready .hero-bio {
-  transition-delay: 375ms;
-}
-
-.is-motion-ready .hero-actions {
-  transition-delay: 450ms;
-}
-
-/* Predictive section reveals */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translate3d(0, var(--motion-distance), 0);
-  transition:
-    opacity var(--motion-slow) ease,
-    transform var(--motion-slow) var(--motion-ease);
-}
-
-.reveal-on-scroll.visible {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-/* Project console: one entrance composed from small related movements. */
-.reveal-showcase .fun-title,
-.reveal-showcase .gameboy,
-.reveal-showcase .game-flank,
-.reveal-showcase .screen-enclosure,
-.reveal-showcase .console-controls,
-.reveal-showcase .console-bottom,
-.reveal-showcase .flank-rail-layer,
-.reveal-showcase .project-image-shell {
-  opacity: 0;
-  transition:
-    opacity var(--motion-medium) ease,
-    transform var(--motion-slow) var(--motion-ease),
-    clip-path var(--motion-slow) var(--motion-ease);
-}
-
-.reveal-showcase .fun-title {
-  transform: translate3d(0, 10px, 0);
-}
-
-.reveal-showcase .gameboy {
-  transform: translate3d(0, 24px, 0) scale(0.992);
-}
-
-.reveal-showcase .left-flank {
-  transform: translate3d(-16px, 8px, 0);
-}
-
-.reveal-showcase .right-flank {
-  transform: translate3d(16px, 8px, 0);
-}
-
-.reveal-showcase .screen-enclosure,
-.reveal-showcase .console-controls,
-.reveal-showcase .console-bottom {
-  transform: translate3d(0, 9px, 0);
-}
-
-.reveal-showcase .flank-rail-layer {
-  transform: scale(0.985);
-}
-
-.reveal-showcase .project-image-shell {
-  clip-path: inset(0 0 8% 0 round 31px 31px 0 0);
-  transform: scale(1.018);
-}
-
-.reveal-showcase.visible .fun-title,
-.reveal-showcase.visible .gameboy,
-.reveal-showcase.visible .game-flank,
-.reveal-showcase.visible .screen-enclosure,
-.reveal-showcase.visible .console-controls,
-.reveal-showcase.visible .console-bottom,
-.reveal-showcase.visible .flank-rail-layer,
-.reveal-showcase.visible .project-image-shell {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
-}
-
-.reveal-showcase.visible .project-image-shell {
-  clip-path: inset(0 0 0 0 round 31px 31px 0 0);
-}
-
-.reveal-showcase.visible .fun-title {
-  transition-delay: 80ms;
-}
-
-.reveal-showcase.visible .flank-rail-layer {
-  transition-delay: 130ms;
-}
-
-.reveal-showcase.visible .gameboy {
-  transition-delay: 150ms;
-}
-
-.reveal-showcase.visible .game-flank {
-  transition-delay: 220ms;
-}
-
-.reveal-showcase.visible .screen-enclosure,
-.reveal-showcase.visible .project-image-shell {
-  transition-delay: 260ms;
-}
-
-.reveal-showcase.visible .console-controls {
-  transition-delay: 330ms;
-}
-
-.reveal-showcase.visible .console-bottom {
-  transition-delay: 390ms;
-}
-
-/* Panorama: title, clipped frame, then supporting line. */
-.reveal-panorama .panorama-section h2,
-.reveal-panorama .panorama-frame,
-.reveal-panorama .panorama-subtitle {
-  opacity: 0;
-  transition:
-    opacity var(--motion-medium) ease,
-    transform var(--motion-slow) var(--motion-ease),
-    clip-path var(--motion-slow) var(--motion-ease);
-}
-
-.reveal-panorama .panorama-section h2,
-.reveal-panorama .panorama-subtitle {
-  transform: translate3d(0, 14px, 0);
-}
-
-.reveal-panorama .panorama-frame {
-  clip-path: inset(0 0 7% 0 round 24px);
-  transform: translate3d(0, 18px, 0) scale(0.992);
-}
-
-.reveal-panorama.visible .panorama-section h2,
-.reveal-panorama.visible .panorama-frame,
-.reveal-panorama.visible .panorama-subtitle {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
-}
-
-.reveal-panorama.visible .panorama-frame {
-  clip-path: inset(0 0 0 0 round 24px);
-  transition-delay: 100ms;
-}
-
-.reveal-panorama.visible .panorama-subtitle {
-  transition-delay: 190ms;
-}
-
-/* Footer background arrives first; content follows in a compact cadence. */
-.reveal-footer {
-  opacity: 1;
-  transform: none;
-}
-
-.reveal-footer .footer-top,
-.reveal-footer .footer-main > div:first-child,
-.reveal-footer .footer-links > div,
-.reveal-footer .footer-bottom {
-  opacity: 0;
-  transform: translate3d(0, 16px, 0);
-  transition:
-    opacity var(--motion-medium) ease,
-    transform var(--motion-slow) var(--motion-ease);
-}
-
-.reveal-footer.visible .footer-top,
-.reveal-footer.visible .footer-main > div:first-child,
-.reveal-footer.visible .footer-links > div,
-.reveal-footer.visible .footer-bottom {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-.reveal-footer.visible .footer-top {
-  transition-delay: 60ms;
-}
-
-.reveal-footer.visible .footer-main > div:first-child {
-  transition-delay: 130ms;
-}
-
-.reveal-footer.visible .footer-links > div:first-child {
-  transition-delay: 210ms;
-}
-
-.reveal-footer.visible .footer-links > div:nth-child(2) {
-  transition-delay: 270ms;
-}
-
-.reveal-footer.visible .footer-bottom {
-  transition-delay: 340ms;
-}
-
-/* Discoverable micro-interactions, limited to precise pointing devices. */
-.kaz-navbar__links a {
-  position: relative;
-}
+/* Repeated micro-interactions stay independent from entrance choreography. */
+.kaz-navbar__links a { position: relative; }
 
 .kaz-navbar__links a::after {
   content: "";
@@ -289,15 +336,13 @@
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform var(--motion-fast) var(--motion-ease);
+  transition: transform 180ms var(--motion-ease);
 }
 
 .kaz-navbar__mobile-links > a {
   opacity: 0;
   transform: translate3d(0, 8px, 0);
-  transition:
-    opacity 360ms ease,
-    transform 460ms var(--motion-ease);
+  transition: opacity 320ms ease, transform 420ms var(--motion-ease);
 }
 
 .kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a {
@@ -305,94 +350,39 @@
   transform: translate3d(0, 0, 0);
 }
 
-.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(2) {
-  transition-delay: 35ms;
-}
-
-.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(3) {
-  transition-delay: 70ms;
-}
-
-.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(4) {
-  transition-delay: 105ms;
-}
-
-.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(5) {
-  transition-delay: 140ms;
-}
-
-.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(6) {
-  transition-delay: 175ms;
-}
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(2) { transition-delay: 35ms; }
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(3) { transition-delay: 70ms; }
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(4) { transition-delay: 105ms; }
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(5) { transition-delay: 140ms; }
+.kaz-navbar__mobile-menu.is-open .kaz-navbar__mobile-links > a:nth-child(6) { transition-delay: 175ms; }
 
 @media (hover: hover) and (pointer: fine) {
-  .kaz-navbar__links a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
+  .kaz-navbar__links a:hover::after { transform: scaleX(1); transform-origin: left; }
   .hero-primary:hover,
-  .hero-secondary:hover {
-    transform: translate3d(0, -2px, 0) scale(1.015);
-  }
-
-  .reveal-panorama .gallery-art:hover {
-    transform: scale(1.025);
-  }
+  .hero-secondary:hover { transform: translate3d(0, -2px, 0) scale(1.012); }
+  .reveal-panorama .gallery-art:hover { transform: scale(1.025); }
 
   .footer-links a,
-  .footer-links button {
-    transition:
-      color var(--motion-fast) ease,
-      transform var(--motion-fast) var(--motion-ease);
-  }
+  .footer-links button { transition: color 180ms ease, transform 180ms var(--motion-ease); }
 
   .footer-links a:hover,
-  .footer-links button:hover {
-    transform: translate3d(2px, 0, 0);
-  }
+  .footer-links button:hover { transform: translate3d(2px, 0, 0); }
 }
 
 @media (max-width: 768px) {
-  .page-shell {
-    --motion-medium: 460ms;
-    --motion-slow: 620ms;
-    --motion-distance: 12px;
+  .page-shell { --motion-rise: 10px; }
+
+  .reveal-showcase:not(.visible) .project-image-shell {
+    clip-path: inset(0 0 5% 0 round 28px 28px 0 0);
+    transform: translate3d(0, 8px, 0) scale(1.006);
   }
 
-  .is-motion-pending .hero-intro,
-  .is-motion-pending .hero h1 > span,
-  .is-motion-pending .hero-subtitle,
-  .is-motion-pending .hero-bio,
-  .is-motion-pending .hero-actions {
-    transform: translate3d(0, 12px, 0);
-  }
-
-  .reveal-showcase .gameboy {
-    transform: translate3d(0, 14px, 0) scale(0.996);
-  }
-
-  .reveal-showcase .screen-enclosure,
-  .reveal-showcase .console-controls,
-  .reveal-showcase .console-bottom,
-  .reveal-panorama .panorama-frame {
-    transform: translate3d(0, 8px, 0);
-  }
-
-  .reveal-showcase .project-image-shell,
-  .reveal-showcase.visible .project-image-shell {
-    clip-path: inset(0 0 0 0 round 28px 28px 0 0);
-  }
-
-  .reveal-showcase.visible .game-flank {
-    transition-delay: 0ms;
-  }
+  .reveal-showcase.motion-entering .project-image-shell { animation-duration: 640ms; }
+  .reveal-panorama:not(.visible) .panorama-frame { transform: translate3d(0, 9px, 0) scale(0.997); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
 
   .page-shell *,
   .page-shell *::before,
@@ -403,31 +393,55 @@
     transition-duration: 0.01ms !important;
   }
 
-  .hero,
-  .is-motion-pending .kaz-navbar,
+  .hero-intro,
+  .hero h1 > span,
+  .hero-subtitle,
+  .hero-bio,
+  .hero-actions > a { translate: none !important; }
+
+  .is-motion-pending .kaz-navbar__avatar,
+  .is-motion-pending .kaz-navbar__name,
+  .is-motion-pending .kaz-navbar__badge,
+  .is-motion-pending .kaz-navbar__subtitle,
+  .is-motion-pending .kaz-navbar__links > a,
+  .is-motion-pending .kaz-navbar__secondary,
+  .is-motion-pending .kaz-navbar__primary,
+  .is-motion-pending .kaz-navbar__menu-button,
   .is-motion-pending .hero-intro,
   .is-motion-pending .hero h1 > span,
   .is-motion-pending .hero-subtitle,
   .is-motion-pending .hero-bio,
-  .is-motion-pending .hero-actions,
-  .reveal-on-scroll,
-  .reveal-showcase .fun-title,
-  .reveal-showcase .gameboy,
-  .reveal-showcase .game-flank,
-  .reveal-showcase .screen-enclosure,
-  .reveal-showcase .console-controls,
-  .reveal-showcase .console-bottom,
-  .reveal-showcase .flank-rail-layer,
-  .reveal-showcase .project-image-shell,
-  .reveal-panorama .panorama-section h2,
-  .reveal-panorama .panorama-frame,
-  .reveal-panorama .panorama-subtitle,
-  .reveal-footer .footer-top,
-  .reveal-footer .footer-main > div:first-child,
-  .reveal-footer .footer-links > div,
-  .reveal-footer .footer-bottom {
+  .is-motion-pending .hero-actions > a,
+  .reveal-showcase:not(.visible) .fun-title,
+  .reveal-showcase:not(.visible) .flank-rail-layer .rail-card,
+  .reveal-showcase:not(.visible) .game-flank .instructions > p,
+  .reveal-showcase:not(.visible) .game-flank .instruction-card,
+  .reveal-showcase:not(.visible) .project-image-shell,
+  .reveal-showcase:not(.visible) .device-meta b,
+  .reveal-showcase:not(.visible) .device-meta span,
+  .reveal-showcase:not(.visible) .terminal strong,
+  .reveal-showcase:not(.visible) .terminal > div > span,
+  .reveal-showcase:not(.visible) .terminal p,
+  .reveal-showcase:not(.visible) .dpad-control,
+  .reveal-showcase:not(.visible) .action-controls,
+  .reveal-showcase:not(.visible) .dpad-cross,
+  .reveal-showcase:not(.visible) .action-key,
+  .reveal-showcase:not(.visible) .console-bottom > span,
+  .reveal-showcase:not(.visible) .sound-control,
+  .reveal-panorama:not(.visible) .panorama-section h2,
+  .reveal-panorama:not(.visible) .panorama-frame,
+  .reveal-panorama:not(.visible) .hint,
+  .reveal-panorama:not(.visible) .gallery-art,
+  .reveal-panorama:not(.visible) .panorama-subtitle,
+  .reveal-footer:not(.visible) .footer-top > *,
+  .reveal-footer:not(.visible) .footer-main > div:first-child > p,
+  .reveal-footer:not(.visible) .footer-main h2 > span,
+  .reveal-footer:not(.visible) .footer-links > div > *,
+  .reveal-footer:not(.visible) .footer-bottom > span {
     opacity: 1 !important;
     clip-path: none !important;
     transform: none !important;
+    translate: none !important;
+    animation: none !important;
   }
 }

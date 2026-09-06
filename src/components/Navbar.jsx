@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import "./Navbar.css";
 
 const navigationLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
+  { label: "Studio", href: "#about" },
+  { label: "Approach", href: "#approach" },
   { label: "Work", href: "#work" },
-  { label: "Contact", href: "#contact" },
+  { label: "Trust", href: "#testimonials" },
 ];
 
 function ArrowRight() {
@@ -56,7 +55,7 @@ export default function Navbar() {
       >
         <a
           className="kaz-navbar__brand"
-          href="#home"
+          href="#hero"
           aria-label="KAZ NEXT home"
         >
           <img

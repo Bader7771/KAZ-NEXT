@@ -280,6 +280,7 @@ export default function Panoramic3DSection() {
             <div
               className="gallery-position"
               style={{
+                "--gallery-delay": `${245 + index * 16}ms`,
                 transform: `rotateY(${index * (360 / galleryItems.length)}deg) translateZ(1300px)`,
               }}
               key={`${item.type}-${item.asset || index}`}

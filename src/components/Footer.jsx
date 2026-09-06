@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { KAZ_NEXT_SOCIALS } from "../config/socialLinks";
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
@@ -54,17 +55,20 @@ export default function Footer() {
         <div>
           <p>LET'S BUILD A DIGITAL PRESENCE THAT ACTUALLY DRIVES GROWTH.</p>
           <h2>
-            Ready to take your business
-            <br />
-            <em>to the next level?</em>
+            <span>Ready to take your business</span>
+            <span>
+              <em>to the next level?</em>
+            </span>
           </h2>
         </div>
         <div className="footer-links">
           <div>
             <small>EXPLORE</small>
-            <a href="#home">Home</a>
-            <a href="#projects">Selected Work</a>
-            <a href="#home">Our Approach</a>
+            <a href="#hero">Home</a>
+            <a href="#about">Studio</a>
+            <a href="#approach">Our Approach</a>
+            <a href="#work">Selected Work</a>
+            <a href="#testimonials">Trust &amp; Proof</a>
             <a href="#contact">Contact</a>
           </div>
           <div>
@@ -75,6 +79,8 @@ export default function Footer() {
             <a href="#contact">Websites &amp; Content ↗</a>
             <a href="#contact">Advertising &amp; Growth ↗</a>
             <a href="#contact">AI &amp; Automation ↗</a>
+            <a href={KAZ_NEXT_SOCIALS.instagramUrl}>Instagram ↗</a>
+            <a href={KAZ_NEXT_SOCIALS.facebookUrl}>Facebook ↗</a>
           </div>
         </div>
       </div>

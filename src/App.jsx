@@ -8,6 +8,7 @@ import {
 } from "react";
 import useScrollReveal from "./hooks/useScrollReveal";
 import Navbar from "./components/Navbar";
+import WhoWeAre from "./components/WhoWeAre";
 import "./App.css";
 import "./FlankRail.css";
 import "./Gameboy.css";
@@ -30,8 +31,8 @@ const projects = [
     imageHeight: 1024,
     tagline:
       "Helping buyers discover modern apartments, luxury villas, and high-value properties through a clear, trusted digital experience.",
-    caseStudyUrl: "#projects",
-    liveUrl: "#projects",
+    caseStudyUrl: "#work",
+    liveUrl: "#work",
   },
   {
     id: 1,
@@ -44,8 +45,8 @@ const projects = [
     imageHeight: 1024,
     tagline:
       "A welcoming digital presence that helps patients explore dental care, understand treatment options, and book with confidence.",
-    caseStudyUrl: "#projects",
-    liveUrl: "#projects",
+    caseStudyUrl: "#work",
+    liveUrl: "#work",
   },
   {
     id: 2,
@@ -58,8 +59,8 @@ const projects = [
     imageHeight: 1024,
     tagline:
       "A refined online presence for a modern legal practice, making business counsel and consultations clear and approachable.",
-    caseStudyUrl: "#projects",
-    liveUrl: "#projects",
+    caseStudyUrl: "#work",
+    liveUrl: "#work",
   },
   {
     id: 3,
@@ -72,8 +73,8 @@ const projects = [
     imageHeight: 1024,
     tagline:
       "A warm digital experience that showcases contemporary dining and turns interest into reservations and memorable visits.",
-    caseStudyUrl: "#projects",
-    liveUrl: "#projects",
+    caseStudyUrl: "#work",
+    liveUrl: "#work",
   },
   {
     id: 4,
@@ -86,8 +87,8 @@ const projects = [
     imageHeight: 1024,
     tagline:
       "A bold digital presence connecting members with personal training, strength programs, and a healthier daily routine.",
-    caseStudyUrl: "#projects",
-    liveUrl: "#projects",
+    caseStudyUrl: "#work",
+    liveUrl: "#work",
   },
 ];
 
@@ -264,8 +265,8 @@ export default function App() {
       className={`page-shell ${isMotionReady ? "is-motion-ready" : "is-motion-pending"}`}
     >
       <Navbar />
-      <main id="home">
-        <section className="hero shell">
+      <main>
+        <section id="hero" className="hero shell">
           <p className="hero-intro">● Accepting New Growth Projects</p>
           <h1>
             <span>We build digital experiences</span>
@@ -285,14 +286,15 @@ export default function App() {
             <a className="hero-primary" href="#contact">
               Start Your Project
             </a>
-            <a className="hero-secondary" href="#projects">
+            <a className="hero-secondary" href="#work">
               ↓ Explore Our Work
             </a>
           </div>
         </section>
+        <WhoWeAre />
         <section
           ref={showcaseRef}
-          id="projects"
+          id="work"
           className="showcase shell reveal-on-scroll reveal-showcase"
         >
           <p className="fun-title">
