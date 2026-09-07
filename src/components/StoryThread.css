@@ -1,7 +1,12 @@
 .kz-thread-host{
   position: relative;
 }
-
+:root {
+  --section-vertical-padding: clamp(130px, 12vw, 184px);
+  --section-gap: clamp(20px, 2.3vw, 32px);
+  --inner-padding: clamp(12px, 1vw, 24px);
+  --storythread-vertical-padding: clamp(60px, 6vw, 100px);
+}
 .spotlight-section{
   --spotlight-size: 92px;
   --spotlight-radius: calc(var(--spotlight-size) / 2);
@@ -9,12 +14,12 @@
   --spotlight-y: 50%;
   --spotlight-transform: translate3d(-200px, -200px, 0);
   overflow: hidden;
-  background: #dbeafe;
-  color: #1e2a5e;
+  background: #ffffff;
+  color: #000000;
 }
 
 .spotlight-section :where(h1, h2, h3, h4, p, li, span, strong, em, a, div){
-  color: #1e2a5e;
+  color: #000000;
 }
 
 .spotlight-section.is-spotlight-active,
@@ -27,12 +32,124 @@
   z-index: 1;
 }
 
+.kz-thread-host :where(.ps-section, .hwh-section, .hww-section) {
+  padding: var(--section-vertical-padding) 0;
+}
+
+/* Smaller vertical padding for StoryThread sections */
+.kz-thread-host .ps-section,
+.kz-thread-host .hwh-section,
+.kz-thread-host .hww-section {
+  padding: var(--storythread-vertical-padding) 0 !important;
+}
+
+.kz-thread-host :where(.ps-head, .hwh-head) {
+  margin-bottom: var(--section-gap);
+}
+
+.kz-thread-host .hww-top {
+  gap: var(--section-gap);
+  margin-bottom: var(--section-gap);
+}
+
+.kz-thread-host .ps-grid {
+  column-gap: var(--section-gap);
+}
+
+.kz-thread-host .ps-col-label {
+  margin-bottom: var(--inner-padding);
+}
+
+.kz-thread-host :where(.ps-problem-list li, .ps-solution-list li) {
+  padding-top: var(--inner-padding);
+  padding-bottom: var(--inner-padding);
+}
+
+.kz-thread-host .ps-solution-list li {
+  padding-left: calc(var(--section-gap) * 1.5);
+}
+
+.kz-thread-host .ps-solution-list li::before {
+  top: var(--inner-padding);
+}
+
+.kz-thread-host .ps-bridge {
+  padding-top: var(--section-gap);
+}
+
+.kz-thread-host .ps-note {
+  margin-top: var(--section-gap);
+  padding-top: var(--inner-padding);
+}
+
+.kz-thread-host .hwh-path {
+  padding-top: var(--inner-padding);
+}
+
+.kz-thread-host .hwh-row {
+  gap: var(--section-gap);
+}
+
+.kz-thread-host .hwh-index {
+  margin-bottom: var(--inner-padding);
+}
+
+.kz-thread-host .hwh-close {
+  margin-top: var(--section-gap);
+}
+
+.kz-thread-host .hww-step {
+  gap: var(--section-gap);
+  padding: var(--inner-padding) 0;
+}
+
+.kz-thread-host .hww-step-body {
+  gap: var(--section-gap);
+}
+
+.kz-thread-host .hww-step-title {
+  padding-top: var(--inner-padding);
+}
+
+.kz-thread-host .hww-step-desc {
+  padding-top: var(--inner-padding);
+}
+
+.kz-thread-host .hww-close {
+  margin-top: var(--section-gap);
+  padding-top: var(--inner-padding);
+}
+
+@media (max-width: 860px){
+  .kz-thread-host .ps-grid{
+    gap: 34px;
+  }
+
+  .kz-thread-host .hww-top{
+    gap: 20px;
+  }
+
+  .kz-thread-host .hwh-item{
+    padding: 20px 0;
+  }
+}
+
+@media (max-width: 700px){
+  .kz-thread-host :where(.ps-section, .hwh-section, .hww-section){
+    padding: 64px 0 52px;
+  }
+
+  .kz-thread-host :where(.ps-head, .hwh-head){
+    margin-bottom: 40px;
+  }
+}
+
 .spotlight-section__reveal{
   position: absolute;
   inset: 0;
   z-index: 4;
   overflow: hidden;
-  background: #3b261c;
+  background: #000000;
   clip-path: circle(
     calc(var(--spotlight-size) / 2) at var(--spotlight-x) var(--spotlight-y)
   );
@@ -45,9 +162,15 @@
   opacity: 1;
 }
 
+@media (max-width: 980px) {
+  .kz-thread-host .ps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .spotlight-section__reveal,
 .spotlight-section__reveal :where(h1, h2, h3, h4, p, li, span, strong, em, a, div){
-  color: #fdf5e6 !important;
+  color: #ffffff !important;
 }
 
 .spotlight-section__reveal :where(section, div, ul, li, article, aside){
@@ -73,20 +196,20 @@
   .hww-step,
   .hww-close
 ){
-  border-color: rgba(253, 245, 230, 0.28) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
 }
 
 .spotlight-section__reveal .ps-solution-list::before,
 .spotlight-section__reveal .hwh-line,
 .spotlight-section__reveal .hww-steps::before,
 .spotlight-section__reveal .kz-thread{
-  background: rgba(253, 245, 230, 0.28) !important;
+  background: rgba(255, 255, 255, 0.28) !important;
 }
 
 .spotlight-section__reveal .ps-solution-list li::before,
 .spotlight-section__reveal .hww-step-num{
-  background: #fdf5e6 !important;
-  color: #3b261c !important;
+  background: #ffffff !important;
+  color: #000000 !important;
 }
 
 .kz-thread{
@@ -103,7 +226,7 @@
     transparent
   );
   transform: translateX(-0.5px);
-  z-index: 0;
+  z-index: -1; /* ensure the line stays behind all text */
   pointer-events: none;
 }
 

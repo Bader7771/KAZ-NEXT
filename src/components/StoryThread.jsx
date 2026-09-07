@@ -121,7 +121,7 @@ export default function StoryThread({ children }) {
   }, []);
 
   return (
-    <div ref={spotlightSectionRef} className="kz-thread-host spotlight-section">
+    <div ref={spotlightSectionRef} className="kz-thread-host spotlight-section shell">
       <div className="spotlight-section__base">
         <div className="kz-thread" aria-hidden="true" />
         {children}

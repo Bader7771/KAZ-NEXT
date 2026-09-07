@@ -274,9 +274,7 @@ export default function App() {
           <p className="hero-intro">● Accepting New Growth Projects</p>
           <h1>
             <span>We build digital experiences</span>
-            <span>
-              <em>that help businesses get noticed,</em> build trust, and grow.
-            </span>
+            
           </h1>
           <p className="hero-subtitle">
             Get noticed. Build trust. Turn visitors into customers.
@@ -295,7 +293,6 @@ export default function App() {
             </a>
           </div>
         </section>
-        <WhoWeAre />
         <StoryThread>
           <ProblemSolution />
           <hr className="kz-divider" />
@@ -303,6 +300,8 @@ export default function App() {
           <hr className="kz-divider" />
           <HowWeWork />
         </StoryThread>
+        <WhoWeAre />
+        
         <section
           ref={showcaseRef}
           id="work"

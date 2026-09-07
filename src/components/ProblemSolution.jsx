@@ -89,8 +89,10 @@ export default function ProblemSolution() {
           className={`ps-note kz-reveal ${noteVisible ? 'is-visible' : ''}`}
         >
           <strong>There&apos;s no single fix we reach for by default.</strong>{' '}
-          The right combination — website, automation, AI, or a custom
-          system — depends entirely on what&apos;s actually limiting your
+          The right combination — website, <br />
+          automation, AI, or a custom system
+           depends entirely on
+           what&apos;s actually limiting<br /> your
           business, not a package we sell.
         </div>
       </div>

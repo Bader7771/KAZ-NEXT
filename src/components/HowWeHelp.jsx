@@ -42,7 +42,7 @@ export default function HowWeHelp() {
             <span>How We Help You Grow</span>
           </div>
           <h2 className="kz-headline hwh-headline">
-            Technology should move a business forward, not just fill a gap.
+            Technology should move a business forward,<br />not just fill a gap.
           </h2>
           <p className="hwh-lede">
             A finished website or a shipped feature isn&apos;t the goal —
