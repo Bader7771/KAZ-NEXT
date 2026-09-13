@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
-import { KAZ_NEXT_SOCIALS } from "../config/socialLinks";
+import { useEffect, useRef, useState } from "react";
+import { KAZ_NEXT_CONTACT } from "../config/contact";
+import ContactButton from "./ContactButton";
+import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState("");
+  const copyTimer = useRef(0);
 
   useEffect(() => {
     let timer;
     const formatter = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Asia/Kolkata",
+      timeZone: "Africa/Casablanca",
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
@@ -30,17 +33,24 @@ export default function Footer() {
     return () => {
       stop();
       document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.clearTimeout(copyTimer.current);
     };
   }, []);
 
   const copyEmail = async () => {
-    await navigator.clipboard?.writeText("hello@kaznext.com");
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1600);
+    try {
+      if (!navigator.clipboard) throw new Error("Clipboard unavailable");
+      await navigator.clipboard.writeText(KAZ_NEXT_CONTACT.email);
+      setCopied(true);
+      window.clearTimeout(copyTimer.current);
+      copyTimer.current = window.setTimeout(() => setCopied(false), 1600);
+    } catch {
+      window.location.href = KAZ_NEXT_CONTACT.emailUrl;
+    }
   };
 
   return (
-    <footer>
+    <footer className="kaz-footer">
       <div className="footer-top shell">
         <div className="status dark">
           <i /> AVAILABLE FOR NEW BUSINESS PARTNERSHIPS
@@ -60,27 +70,33 @@ export default function Footer() {
               <em>to the next level?</em>
             </span>
           </h2>
+          <ContactButton />
         </div>
         <div className="footer-links">
           <div>
             <small>EXPLORE</small>
             <a href="#hero">Home</a>
             <a href="#about">Studio</a>
-            <a href="#approach">Our Approach</a>
+            <a href="#how-we-work">Our Approach</a>
             <a href="#work">Selected Work</a>
             <a href="#testimonials">Trust &amp; Proof</a>
             <a href="#contact">Contact</a>
           </div>
           <div>
             <small>START A CONVERSATION</small>
-            <button onClick={copyEmail}>
-              {copied ? "Email copied!" : "Partner With KAZ NEXT"} <span>□</span>
+            <a href={KAZ_NEXT_CONTACT.emailUrl}>{KAZ_NEXT_CONTACT.email}</a>
+            <span className="kaz-contact-channels">
+              <a href={KAZ_NEXT_CONTACT.phoneUrl}>CALL US</a>
+              <a href={KAZ_NEXT_CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+            </span>
+            <button type="button" className="kaz-copy-email" onClick={copyEmail} aria-live="polite">
+              {copied ? "Email copied" : "Copy email"}
+              <svg className="kaz-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="8" y="8" width="12" height="12" rx="2" />
+                <path d="M16 8V4H4v12h4" />
+              </svg>
             </button>
-            <a href="#contact">Websites &amp; Content ↗</a>
-            <a href="#contact">Advertising &amp; Growth ↗</a>
-            <a href="#contact">AI &amp; Automation ↗</a>
-            <a href={KAZ_NEXT_SOCIALS.instagramUrl}>Instagram ↗</a>
-            <a href={KAZ_NEXT_SOCIALS.facebookUrl}>Facebook ↗</a>
+            <SocialLinks />
           </div>
         </div>
       </div>

@@ -8,11 +8,14 @@ import { useEffect, useRef, useState } from 'react';
  */
 export function useReveal(options = { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }) {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(() =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    !('IntersectionObserver' in window),
+  );
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || visible) return;
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

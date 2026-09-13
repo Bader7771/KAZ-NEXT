@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { KAZ_NEXT_SOCIALS } from "../config/socialLinks";
+import SocialLinks from "./SocialLinks";
 import "./WhoWeAre.css";
 
 const moments = [
@@ -289,20 +289,9 @@ export default function WhoWeAre() {
           </p>
         </div>
 
-        <div className="who-socials" id="instagram">
+        <div className="who-socials">
           <span>Follow the journey</span>
-          <div>
-            <a href={KAZ_NEXT_SOCIALS.instagramUrl} aria-label="KAZ NEXT on Instagram">
-              Instagram <i aria-hidden="true">↗</i>
-            </a>
-            <a
-              id="facebook"
-              href={KAZ_NEXT_SOCIALS.facebookUrl}
-              aria-label="KAZ NEXT on Facebook"
-            >
-              Facebook <i aria-hidden="true">↗</i>
-            </a>
-          </div>
+          <SocialLinks />
         </div>
       </div>
     </section>

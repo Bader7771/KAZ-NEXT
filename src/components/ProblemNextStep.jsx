@@ -1,4 +1,5 @@
 import "./ProblemNextStep.css";
+import ContactButton from "./ContactButton";
 
 const diagnosticEntries = [
   {
@@ -218,9 +219,7 @@ export default function ProblemNextStep() {
               Tell us where you are today. We&apos;ll help you explore what could come next.
             </span>
           </div>
-          <a href="#contact" className="diagnostic-cta__button">
-            [ Let&apos;s Talk <span aria-hidden="true">↗</span> ]
-          </a>
+          <ContactButton className="diagnostic-cta__button" />
         </aside>
       </div>
     </section>

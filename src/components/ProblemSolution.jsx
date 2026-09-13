@@ -19,13 +19,13 @@ const SOLUTIONS = [
   'Technology chosen for the goal, not the trend',
 ];
 
-export default function ProblemSolution() {
+export default function ProblemSolution({ mirror = false }) {
   const [headRef, headVisible] = useReveal();
   const [gridRef, gridVisible] = useReveal();
   const [noteRef, noteVisible] = useReveal();
 
   return (
-    <section id="problem-solution" className="ps-section">
+    <section id={mirror ? undefined : "problem-solution"} className="ps-section">
       <div className="kz-wrap">
         <div
           ref={headRef}
@@ -89,11 +89,9 @@ export default function ProblemSolution() {
           className={`ps-note kz-reveal ${noteVisible ? 'is-visible' : ''}`}
         >
           <strong>There&apos;s no single fix we reach for by default.</strong>{' '}
-          The right combination — website, <br />
-          automation, AI, or a custom system
-           depends entirely on
-           what&apos;s actually limiting<br /> your
-          business, not a package we sell.
+          The right combination — website, automation, AI, or a custom system —
+          depends entirely on what&apos;s actually limiting your business, not a
+          package we sell.
         </div>
       </div>
     </section>

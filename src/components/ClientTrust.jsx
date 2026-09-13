@@ -32,11 +32,11 @@ export default function ClientTrust() {
     <section
       id="testimonials"
       aria-labelledby="client-trust-title"
-      className="reveal-on-scroll reveal-trust border-t border-neutral-200 bg-white text-neutral-950 dark:border-neutral-800 dark:bg-[#0A0A0A] dark:text-neutral-50"
+      className="reveal-on-scroll reveal-trust trust-section"
     >
-      <div className="mx-auto w-[min(1152px,calc(100%_-_3rem))] py-28 sm:py-36 lg:py-44">
+      <div className="trust-container">
         <header
-          className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20"
+          className="trust-heading"
           data-trust-reveal
         >
           <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-neutral-500">
@@ -48,76 +48,73 @@ export default function ClientTrust() {
           </p>
           <h2
             id="client-trust-title"
-            className="max-w-[17ch] [font-family:var(--serif,Georgia,serif)] text-[clamp(3rem,6.5vw,6.4rem)] font-medium leading-[0.91] tracking-[-0.055em] lg:justify-self-end"
+            className="trust-heading-title"
           >
             Trust should be felt before the{" "}
             <em className="font-medium">first call.</em>
           </h2>
         </header>
 
-        <div className="mt-20 grid border-l border-t border-neutral-200 dark:border-neutral-800 lg:grid-cols-[1.25fr_0.75fr]">
+        <div className="trust-grid">
           <blockquote
-            className="flex min-h-[410px] flex-col justify-between border-b border-r border-neutral-200 bg-[#F7F7F4] p-8 dark:border-neutral-800 dark:bg-neutral-950 sm:p-12 lg:p-16"
+            className="trust-panel trust-principle"
             data-trust-reveal
           >
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+            <span className="trust-label">
               Studio principle · Not a sales line
             </span>
-            <p className="mt-20 max-w-[20ch] [font-family:var(--serif,Georgia,serif)] text-3xl font-medium leading-[1.08] tracking-[-0.035em] sm:text-5xl">
+            <p className="trust-statement">
               “Trust is not a finishing touch. It is how the work begins, how
               decisions are explained, and how the relationship keeps moving.”
             </p>
-            <cite className="mt-12 font-mono text-[10px] not-italic uppercase tracking-[0.16em] text-neutral-500">
+            <cite className="trust-label">
               KAZ NEXT / Studio ethos
             </cite>
           </blockquote>
 
           <aside
-            className="flex min-h-[410px] flex-col justify-between border-b border-r border-neutral-200 bg-[#111] p-8 text-white dark:border-neutral-800 sm:p-12"
+            className="trust-panel trust-proof"
             data-trust-reveal
           >
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+              <p className="trust-label">
                 Proof over performance
               </p>
-              <h3 className="mt-8 max-w-[14ch] [font-family:var(--serif,Georgia,serif)] text-4xl font-medium leading-[0.98] tracking-[-0.04em]">
+              <h3 className="trust-proof-title">
                 Clear work. Specific thinking. No borrowed praise.
               </h3>
             </div>
-            <p className="mt-14 max-w-sm text-sm leading-relaxed text-neutral-400">
+            <p className="trust-proof-body">
               We do not inflate results or put words in a client&apos;s mouth. The
               work below shows the problem each experience was designed to make
               clearer.
             </p>
           </aside>
-        </div>
-
-        <div className="grid border-l border-neutral-200 dark:border-neutral-800 md:grid-cols-3">
           {projectProof.map((project, index) => (
             <article
               key={project.name}
-              className="group min-h-[360px] border-b border-r border-neutral-200 p-8 transition-colors duration-300 hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-950 sm:p-9"
+              className="trust-evidence group flex min-w-0 flex-col gap-5 bg-white text-black transition-colors duration-300 hover:bg-black hover:text-white motion-reduce:transition-none"
               data-trust-reveal
               style={{ "--trust-delay": `${320 + index * 75}ms` }}
             >
-              <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.16em] text-neutral-500">
+              <div className="flex flex-col items-start gap-1 [font-family:var(--mono)] text-[9px] leading-relaxed uppercase tracking-[0.12em] text-black transition-colors duration-300 group-hover:text-white motion-reduce:transition-none">
                 <span>{project.index} · Project evidence</span>
                 <span>{project.field}</span>
               </div>
-              <h3 className="mt-16 max-w-[16ch] [font-family:var(--serif,Georgia,serif)] text-3xl font-medium leading-[1.03] tracking-[-0.03em]">
+              <h3 className="m-0 max-w-[22ch] text-balance [font-family:var(--serif,Georgia,serif)] text-[clamp(1.625rem,2.5vw,2rem)] font-medium leading-[1.15] tracking-[-0.025em] text-black transition-colors duration-300 group-hover:text-white motion-reduce:transition-none">
                 {project.title}
               </h3>
-              <p className="mt-7 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
+              <p className="m-0 max-w-[48ch] text-pretty text-sm leading-[1.7] text-black transition-colors duration-300 group-hover:text-white motion-reduce:transition-none">
                 {project.detail}
               </p>
               <a
                 href="#work"
-                className="mt-8 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.16em] !text-neutral-800 dark:!text-neutral-200"
+                className="mt-auto flex min-h-11 items-center justify-between gap-4 [font-family:var(--mono)] text-[10px] leading-relaxed uppercase tracking-[0.12em] !text-black transition-colors duration-300 group-hover:!text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-current focus-visible:outline-offset-4 motion-reduce:transition-none"
               >
                 {project.name}
                 <span
                   aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  className="shrink-0 text-base leading-none transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none motion-reduce:transition-none"
                 >
                   ↗
                 </span>

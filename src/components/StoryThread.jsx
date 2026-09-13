@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { Children, cloneElement, isValidElement, useEffect, useRef } from 'react';
 import './tokens.css';
 import './StoryThread.css';
 
@@ -126,9 +126,13 @@ export default function StoryThread({ children }) {
         <div className="kz-thread" aria-hidden="true" />
         {children}
       </div>
-      <div className="spotlight-section__reveal" aria-hidden="true" inert="">
+      <div className="spotlight-section__reveal" aria-hidden="true" inert>
         <div className="kz-thread" aria-hidden="true" />
-        {children}
+        {Children.map(children, (child) =>
+          isValidElement(child) && typeof child.type !== 'string'
+            ? cloneElement(child, { mirror: true })
+            : child,
+        )}
       </div>
     </div>
   );

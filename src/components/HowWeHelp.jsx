@@ -1,5 +1,6 @@
 import { useReveal } from '../hooks/useReveal';
 import './HowWeHelp.css';
+import ContactButton from './ContactButton';
 
 const GROWTH_AREAS = [
   {
@@ -24,13 +25,13 @@ const GROWTH_AREAS = [
   },
 ];
 
-export default function HowWeHelp() {
+export default function HowWeHelp({ mirror = false }) {
   const [headRef, headVisible] = useReveal();
   const [pathRef, pathVisible] = useReveal();
   const [closeRef, closeVisible] = useReveal();
 
   return (
-    <section id="how-we-help" className="hwh-section">
+    <section id={mirror ? undefined : "how-we-help"} className="hwh-section">
       <div className="kz-wrap">
         <div
           ref={headRef}
@@ -75,6 +76,7 @@ export default function HowWeHelp() {
             The question we build around is always{' '}
             <em>what changes for you</em> after this.
           </span>
+          <ContactButton />
         </div>
       </div>
     </section>

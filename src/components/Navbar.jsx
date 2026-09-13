@@ -1,24 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
+import ContactButton from "./ContactButton";
 
 const navigationLinks = [
   { label: "Studio", href: "#about" },
-  { label: "Approach", href: "#approach" },
+  { label: "Approach", href: "#how-we-work" },
   { label: "Work", href: "#work" },
   { label: "Trust", href: "#testimonials" },
 ];
 
-function ArrowRight() {
-  return (
-    <svg className="kaz-navbar__arrow" viewBox="0 0 16 16" aria-hidden="true">
-      <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
-    </svg>
-  );
-}
-
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 24);
@@ -33,15 +28,36 @@ export default function Navbar() {
     if (!isMenuOpen) return undefined;
 
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") setIsMenuOpen(false);
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+      if (event.key === "Tab") {
+        const controls = [menuButtonRef.current, ...mobileMenuRef.current.querySelectorAll("a")];
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
 
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    const focusFrame = window.requestAnimationFrame(() => mobileMenuRef.current?.querySelector("a")?.focus());
+    const handleResize = () => { if (window.innerWidth > 980) setIsMenuOpen(false); };
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      window.cancelAnimationFrame(focusFrame);
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
     };
   }, [isMenuOpen]);
 
@@ -88,16 +104,11 @@ export default function Navbar() {
         </div>
 
         <div className="kaz-navbar__actions">
-          <a className="kaz-navbar__secondary" href="#contact">
-            Partner
-          </a>
-          <a className="kaz-navbar__primary" href="mailto:hello@kaznext.com">
-            <span>Request Availability</span>
-            <ArrowRight />
-          </a>
+          <ContactButton className="kaz-navbar__primary" />
         </div>
 
         <button
+          ref={menuButtonRef}
           className={`kaz-navbar__menu-button${isMenuOpen ? " is-open" : ""}`}
           type="button"
           onClick={() => setIsMenuOpen((open) => !open)}
@@ -113,9 +124,11 @@ export default function Navbar() {
       </nav>
 
       <div
+        ref={mobileMenuRef}
         id="mobile-navigation"
         className={`kaz-navbar__mobile-menu${isMenuOpen ? " is-open" : ""}`}
         aria-hidden={!isMenuOpen}
+        inert={!isMenuOpen}
       >
         <div className="kaz-navbar__mobile-links">
           {navigationLinks.map((link, index) => (
@@ -124,14 +137,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            className="kaz-navbar__mobile-cta"
-            href="mailto:hello@kaznext.com"
-            onClick={closeMenu}
-          >
-            Request Availability
-            <ArrowRight />
-          </a>
+          <ContactButton className="kaz-navbar__mobile-cta" onClick={closeMenu} />
         </div>
       </div>
     </header>

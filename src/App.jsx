@@ -17,6 +17,9 @@ import StoryThread from "./components/StoryThread";
 import ProblemSolution from "./components/ProblemSolution";
 import HowWeHelp from "./components/HowWeHelp";
 import HowWeWork from "./components/HowWeWork";
+import HeroSection from "./components/HeroSection";
+import ClientTrust from "./components/ClientTrust";
+import ContactSection from "./components/ContactSection";
 
 const Panoramic3DSection = lazy(
   () => import("./components/Panoramic3DSection"),
@@ -270,29 +273,7 @@ export default function App() {
     >
       <Navbar />
       <main>
-        <section id="hero" className="hero shell">
-          <p className="hero-intro">● Accepting New Growth Projects</p>
-          <h1>
-            <span>We build digital experiences</span>
-            
-          </h1>
-          <p className="hero-subtitle">
-            Get noticed. Build trust. Turn visitors into customers.
-          </p>
-          <p className="hero-bio">
-            From high-converting websites and visual content to targeted
-            advertising and AI automation—we turn online attention into real
-            customers and measurable business growth.
-          </p>
-          <div className="hero-actions">
-            <a className="hero-primary" href="#contact">
-              Start Your Project
-            </a>
-            <a className="hero-secondary" href="#work">
-              ↓ Explore Our Work
-            </a>
-          </div>
-        </section>
+        <HeroSection />
         <StoryThread>
           <ProblemSolution />
           <hr className="kz-divider" />
@@ -513,6 +494,7 @@ export default function App() {
             </aside>
           </div>
         </section>
+        <ClientTrust />
         <DeferredContent className="panorama-deferred reveal-on-scroll reveal-panorama">
           <Suspense
             fallback={
@@ -522,10 +504,10 @@ export default function App() {
             <Panoramic3DSection />
           </Suspense>
         </DeferredContent>
+        <ContactSection />
       </main>
       <DeferredContent
         className="footer-deferred reveal-on-scroll reveal-footer"
-        id="contact"
       >
         <Suspense
           fallback={<div className="footer-placeholder" aria-hidden="true" />}

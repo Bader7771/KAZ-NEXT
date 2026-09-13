@@ -1,3 +1,88 @@
+.trust-section {
+  --trust-line: rgba(0, 0, 0, 0.18);
+  --trust-padding: clamp(24px, 3vw, 36px);
+  background: #fff;
+  color: #000;
+  border-top: 1px solid var(--trust-line);
+}
+
+.trust-container {
+  width: min(1152px, calc(100% - 48px));
+  margin-inline: auto;
+  padding-block: clamp(64px, 7.5vw, 104px);
+}
+
+.trust-heading {
+  display: grid;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: clamp(32px, 4vw, 48px);
+}
+
+.trust-heading > p { margin: 0; }
+.trust-heading-title {
+  margin: 0;
+  max-width: 19ch;
+  font: 500 clamp(36px, 4.8vw, 64px)/1.05 var(--serif);
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+/* One grid owns every edge: the upper 2:1 split meets the lower thirds. */
+.trust-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  background: #fff;
+  border-top: 1px solid var(--trust-line);
+  border-left: 1px solid var(--trust-line);
+}
+
+.trust-grid > * {
+  min-width: 0;
+  margin: 0;
+  padding: var(--trust-padding);
+  border-right: 1px solid var(--trust-line);
+  border-bottom: 1px solid var(--trust-line);
+  overflow-wrap: break-word;
+}
+
+.trust-panel { display: flex; flex-direction: column; gap: 28px; }
+.trust-principle { background: #fff; color: #000; }
+.trust-principle > cite { margin-top: auto; }
+.trust-label {
+  margin: 0;
+  font: 400 10px/1.6 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.trust-statement {
+  margin: 0;
+  max-width: 30ch;
+  font: 500 clamp(28px, 3.2vw, 42px)/1.2 var(--serif);
+  letter-spacing: -0.025em;
+  text-wrap: pretty;
+}
+.trust-proof { background: #000; color: #fff; }
+.trust-proof-title {
+  margin: 24px 0 0;
+  font: 500 clamp(28px, 2.6vw, 34px)/1.15 var(--serif);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.trust-proof-body { margin: 0; max-width: 48ch; font-size: 14px; line-height: 1.7; }
+.trust-evidence > a { width: 100%; }
+
+@media (min-width: 1024px) {
+  .trust-heading { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+  .trust-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .trust-principle { grid-column: span 2; }
+  .trust-evidence { display: grid; grid-row: 2 / span 4; grid-template-rows: subgrid; }
+}
+
+@media (max-width: 600px) {
+  .trust-container { width: calc(100% - 32px); }
+}
+
 .reveal-trust:not(.visible) [data-trust-reveal] {
   opacity: 0;
   translate: 0 14px;

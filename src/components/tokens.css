@@ -15,9 +15,9 @@
   --kz-hairline: var(--line, #E7E5E0);
   --kz-blue: var(--blue, #345FF6);
   --kz-blue-deep: #1E3FC4;
-  --kz-lime: #C6F135;
-  --kz-card: #FAFAF8;
-  --kz-radius-pill: 999px;
+  --kz-lime: var(--kz-blue);
+  --kz-card: #FAFAFA;
+  --kz-radius-pill: 15px;
   --kz-maxw: 1180px;
 
   --kz-font-display: var(--serif, "Playfair Display", serif);

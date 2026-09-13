@@ -1,16 +1,15 @@
 .problem-solution-section {
   --bg-primary: #ffffff;
-  --bg-secondary: #f8f8f7;
-  --bg-friction: #f4f4f2;
+  --bg-secondary: #fafafa;
+  --bg-friction: #f4f4f4;
   --text-primary: #121212;
   --text-muted: #666666;
-  --border-subtle: #e8e8e6;
-  --accent-ink: #233a73;
-  --accent-gold: #a78341;
-  --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
-  --font-mono: "DM Mono", "Space Mono", "Courier New", monospace;
-  --font-sans: "DM Sans", "Plus Jakarta Sans", "Inter", -apple-system,
-    BlinkMacSystemFont, sans-serif;
+  --border-subtle: #e8e8e8;
+  --accent-ink: var(--blue);
+  --accent-gold: var(--blue);
+  --font-serif: var(--serif);
+  --font-mono: var(--mono);
+  --font-sans: "DM Sans", sans-serif;
   position: relative;
   overflow: hidden;
   color: var(--text-primary);
@@ -83,7 +82,7 @@
 
 .diagnostic-tag span {
   margin-right: 8px;
-  color: #33a56f;
+  color: var(--blue);
   font-size: 7px;
 }
 
@@ -268,9 +267,9 @@
 
 .solution-pane__meta > span {
   padding: 7px 9px;
-  color: #52613c;
-  background: #f1f4eb;
-  border: 1px solid #e2e7d8;
+  color: var(--blue);
+  background: #fff;
+  border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 8px;
 }
@@ -508,9 +507,9 @@
   grid-template-columns: 0.4fr 1.3fr auto;
   gap: clamp(28px, 5vw, 72px);
   align-items: end;
-  background-color: #fffefa;
+  background-color: #fff;
   background-image: radial-gradient(rgba(18, 18, 18, 0.035) 0.65px, transparent 0.75px),
-    linear-gradient(105deg, rgba(167, 131, 65, 0.035), transparent 38%);
+    linear-gradient(105deg, rgba(0, 0, 0, 0.035), transparent 38%);
   background-size: 5px 5px, 100% 100%;
   border: 1px solid #dcdcd8;
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.035);

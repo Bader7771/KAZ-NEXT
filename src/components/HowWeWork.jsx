@@ -1,5 +1,6 @@
 import { useReveal } from '../hooks/useReveal';
 import './HowWeWork.css';
+import ContactButton from './ContactButton';
 
 const STEPS = [
   {
@@ -28,13 +29,13 @@ const STEPS = [
   },
 ];
 
-export default function HowWeWork() {
+export default function HowWeWork({ mirror = false }) {
   const [topRef, topVisible] = useReveal();
   const [stepsRef, stepsVisible] = useReveal();
   const [closeRef, closeVisible] = useReveal();
 
   return (
-    <section id="how-we-work" className="hww-section">
+    <section id={mirror ? undefined : "how-we-work"} className="hww-section">
       <div className="kz-wrap">
         <div
           ref={topRef}
@@ -93,9 +94,7 @@ export default function HowWeWork() {
             We build with the future of your business in mind — not just
             the brief in front of us.
           </p>
-          <a href="#" className="kz-pill-btn">
-            Start a Project →
-          </a>
+          <ContactButton />
         </div>
       </div>
     </section>
