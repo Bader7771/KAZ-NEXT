@@ -8,7 +8,6 @@ import {
 } from "react";
 import useScrollReveal from "./hooks/useScrollReveal";
 import Navbar from "./components/Navbar";
-import WhoWeAre from "./components/WhoWeAre";
 import "./App.css";
 import "./FlankRail.css";
 import "./Gameboy.css";
@@ -19,7 +18,6 @@ import HowWeHelp from "./components/HowWeHelp";
 import HowWeWork from "./components/HowWeWork";
 import HeroSection from "./components/HeroSection";
 import ClientTrust from "./components/ClientTrust";
-import ContactSection from "./components/ContactSection";
 
 const Panoramic3DSection = lazy(
   () => import("./components/Panoramic3DSection"),
@@ -281,7 +279,6 @@ export default function App() {
           <hr className="kz-divider" />
           <HowWeWork />
         </StoryThread>
-        <WhoWeAre />
         
         <section
           ref={showcaseRef}
@@ -504,7 +501,6 @@ export default function App() {
             <Panoramic3DSection />
           </Suspense>
         </DeferredContent>
-        <ContactSection />
       </main>
       <DeferredContent
         className="footer-deferred reveal-on-scroll reveal-footer"

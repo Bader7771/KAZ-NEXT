@@ -51,7 +51,7 @@ test("contact actions use the shared destination and clickable phone", () => {
   assert.ok(markup.includes(`href="${contact.phoneUrl}"`));
   assert.ok(markup.includes(`href="${contact.emailUrl}"`));
   const buttons = [...markup.matchAll(/<a class="kaz-button kaz-button--primary [^"]*" href="([^"]+)"[^>]*>CONTACT US<\/a>/g)];
-  assert.ok(buttons.length >= 7, "Contact opportunities missing");
+  assert.ok(buttons.length >= 6, "Contact opportunities missing");
   for (const [, href] of buttons) {
     assert.ok([contact.destination, contact.emailUrl].includes(href), href);
   }
@@ -78,7 +78,7 @@ test("rendered assets exist in Vite's public directory", () => {
 
 test("social links have recognizable SVG icons and safe external targets", () => {
   const links = [...markup.matchAll(/<a[^>]+href="https:\/\/(?:www\.)?(?:instagram|facebook)\.com[^>]+>[\s\S]*?<\/a>/g)];
-  assert.ok(links.length >= 4);
+  assert.ok(links.length >= 2);
   for (const [link] of links) {
     assert.ok(link.includes('<svg class="kaz-icon"'));
     assert.ok(link.includes('target="_blank"'));

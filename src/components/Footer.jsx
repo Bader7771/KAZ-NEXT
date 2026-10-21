@@ -50,7 +50,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="kaz-footer">
+    <footer id="contact" className="kaz-footer">
       <div className="footer-top shell">
         <div className="status dark">
           <i /> AVAILABLE FOR NEW BUSINESS PARTNERSHIPS
@@ -76,7 +76,6 @@ export default function Footer() {
           <div>
             <small>EXPLORE</small>
             <a href="#hero">Home</a>
-            <a href="#about">Studio</a>
             <a href="#how-we-work">Our Approach</a>
             <a href="#work">Selected Work</a>
             <a href="#testimonials">Trust &amp; Proof</a>

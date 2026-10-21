@@ -3,7 +3,6 @@ import "./Navbar.css";
 import ContactButton from "./ContactButton";
 
 const navigationLinks = [
-  { label: "Studio", href: "#about" },
   { label: "Approach", href: "#how-we-work" },
   { label: "Work", href: "#work" },
   { label: "Trust", href: "#testimonials" },
