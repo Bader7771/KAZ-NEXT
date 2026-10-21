@@ -8,7 +8,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 let server;
 let markup;
-let contact;
 
 before(async () => {
   // A real React render without opening a browser or a listening server.
@@ -22,8 +21,6 @@ before(async () => {
   const { default: App } = await server.ssrLoadModule("/src/App.jsx");
   const { default: Footer } = await server.ssrLoadModule("/src/components/Footer.jsx");
   const { default: Gallery } = await server.ssrLoadModule("/src/components/Panoramic3DSection.jsx");
-  const { KAZ_NEXT_CONTACT } = await server.ssrLoadModule("/src/config/contact.js");
-  contact = KAZ_NEXT_CONTACT;
   markup = renderToStaticMarkup(createElement(App)) +
     renderToStaticMarkup(createElement(Gallery)) +
     renderToStaticMarkup(createElement(Footer));
@@ -43,18 +40,9 @@ test("every internal anchor resolves and section IDs are unique", () => {
   }
 });
 
-test("contact actions use the shared destination and clickable phone", () => {
-  assert.equal(contact.phone, "0622389826");
-  assert.equal(contact.phoneUrl, "tel:0622389826");
-  assert.equal(contact.email, "info.bader@kaznext.com");
-  assert.equal(contact.emailUrl, "mailto:info.bader@kaznext.com");
-  assert.ok(markup.includes(`href="${contact.phoneUrl}"`));
-  assert.ok(markup.includes(`href="${contact.emailUrl}"`));
-  const buttons = [...markup.matchAll(/<a class="kaz-button kaz-button--primary [^"]*" href="([^"]+)"[^>]*>CONTACT US<\/a>/g)];
-  assert.ok(buttons.length >= 6, "Contact opportunities missing");
-  for (const [, href] of buttons) {
-    assert.ok([contact.destination, contact.emailUrl].includes(href), href);
-  }
+test("personal details and contact actions are absent from the rendered website", () => {
+  assert.ok(!/bader|badr|0622389826|622389826|mailto:|tel:|wa\.me|CONTACT US|CALL US|WHATSAPP|Copy email|#contact/i.test(markup));
+  assert.ok(!/instagram\.com|facebook\.com/i.test(markup));
 });
 
 test("hero retains exact message and has no image or decorative widgets", () => {
@@ -73,16 +61,6 @@ test("rendered assets exist in Vite's public directory", () => {
   }
   for (const name of ["atlas-estates", "lumina-dental", "harris-and-co", "sora-table", "pulse-studio"]) {
     assert.ok(existsSync(`public-runtime/assets/optimized/projects/${name}-960.webp`));
-  }
-});
-
-test("social links have recognizable SVG icons and safe external targets", () => {
-  const links = [...markup.matchAll(/<a[^>]+href="https:\/\/(?:www\.)?(?:instagram|facebook)\.com[^>]+>[\s\S]*?<\/a>/g)];
-  assert.ok(links.length >= 2);
-  for (const [link] of links) {
-    assert.ok(link.includes('<svg class="kaz-icon"'));
-    assert.ok(link.includes('target="_blank"'));
-    assert.ok(link.includes('rel="noopener noreferrer"'));
   }
 });
 

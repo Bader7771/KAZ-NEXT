@@ -1,6 +1,5 @@
 import { useReveal } from '../hooks/useReveal';
 import './HowWeWork.css';
-import ContactButton from './ContactButton';
 
 const STEPS = [
   {
@@ -94,7 +93,6 @@ export default function HowWeWork({ mirror = false }) {
             We build with the future of your business in mind — not just
             the brief in front of us.
           </p>
-          <ContactButton />
         </div>
       </div>
     </section>

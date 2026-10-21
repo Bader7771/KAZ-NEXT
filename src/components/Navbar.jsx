@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
-import ContactButton from "./ContactButton";
 
 const navigationLinks = [
   { label: "Approach", href: "#how-we-work" },
@@ -102,10 +101,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="kaz-navbar__actions">
-          <ContactButton className="kaz-navbar__primary" />
-        </div>
-
         <button
           ref={menuButtonRef}
           className={`kaz-navbar__menu-button${isMenuOpen ? " is-open" : ""}`}
@@ -136,7 +131,6 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <ContactButton className="kaz-navbar__mobile-cta" onClick={closeMenu} />
         </div>
       </div>
     </header>

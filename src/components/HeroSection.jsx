@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import "./HeroSection.css";
-import ContactButton from "./ContactButton";
 
 const NEXT_WORDS = ["NEXT.", "WEB.", "AI.", "SMART.", "NEXT."];
 
@@ -69,7 +68,6 @@ export default function HeroSection() {
           </p>
 
           <div className="kaz-hero__actions" aria-label="Hero actions">
-            <ContactButton className="kaz-hero__primary" />
             <a className="kaz-hero__secondary kaz-button kaz-button--secondary" href="#problem-solution">
               <span className="kaz-hero__secondary-label">DISCOVER KAZ NEXT</span>
               <span className="kaz-hero__secondary-arrow" aria-hidden="true">↓</span>

@@ -1,6 +1,5 @@
 import { useReveal } from '../hooks/useReveal';
 import './HowWeHelp.css';
-import ContactButton from './ContactButton';
 
 const GROWTH_AREAS = [
   {
@@ -76,7 +75,6 @@ export default function HowWeHelp({ mirror = false }) {
             The question we build around is always{' '}
             <em>what changes for you</em> after this.
           </span>
-          <ContactButton />
         </div>
       </div>
     </section>

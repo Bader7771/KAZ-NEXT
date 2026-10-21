@@ -1,5 +1,4 @@
 import "./ProblemNextStep.css";
-import ContactButton from "./ContactButton";
 
 const diagnosticEntries = [
   {
@@ -207,20 +206,6 @@ export default function ProblemNextStep() {
           </p>
         </section>
 
-        <aside className="diagnostic-cta" data-approach-reveal>
-          <div className="diagnostic-cta__index" aria-hidden="true">
-            <span>KAZ NEXT</span>
-            <span>DIR / 03</span>
-          </div>
-          <div className="diagnostic-cta__copy">
-            <p>Start with what is true today</p>
-            <h3>Let&apos;s find what&apos;s holding your business back.</h3>
-            <span>
-              Tell us where you are today. We&apos;ll help you explore what could come next.
-            </span>
-          </div>
-          <ContactButton className="diagnostic-cta__button" />
-        </aside>
       </div>
     </section>
   );
