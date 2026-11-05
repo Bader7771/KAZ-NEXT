@@ -18,6 +18,7 @@ import HowWeHelp from "./components/HowWeHelp";
 import HowWeWork from "./components/HowWeWork";
 import HeroSection from "./components/HeroSection";
 import ClientTrust from "./components/ClientTrust";
+import WhatsAppContact from "./components/WhatsAppContact";
 
 const Panoramic3DSection = lazy(
   () => import("./components/Panoramic3DSection"),
@@ -511,6 +512,7 @@ export default function App() {
           <Footer />
         </Suspense>
       </DeferredContent>
+      <WhatsAppContact />
     </div>
   );
 }
