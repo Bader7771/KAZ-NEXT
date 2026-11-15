@@ -19,6 +19,7 @@ import HowWeWork from "./components/HowWeWork";
 import HeroSection from "./components/HeroSection";
 import ClientTrust from "./components/ClientTrust";
 import WhatsAppContact from "./components/WhatsAppContact";
+import ProjectInquiry from "./components/ProjectInquiry";
 
 const Panoramic3DSection = lazy(
   () => import("./components/Panoramic3DSection"),
@@ -502,6 +503,7 @@ export default function App() {
             <Panoramic3DSection />
           </Suspense>
         </DeferredContent>
+        <ProjectInquiry />
       </main>
       <DeferredContent
         className="footer-deferred reveal-on-scroll reveal-footer"

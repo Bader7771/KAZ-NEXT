@@ -5,6 +5,7 @@ const navigationLinks = [
   { label: "Approach", href: "#how-we-work" },
   { label: "Work", href: "#work" },
   { label: "Trust", href: "#testimonials" },
+  { label: "Inquiry", href: "#inquiry" },
 ];
 
 export default function Navbar() {
